@@ -20,7 +20,7 @@ public class TestCustomer {
 		System.out.println(cus.gender);
 		System.out.println(cus.email);
 		System.out.println(cus.birthday.getDayOfWeek());
-		System.out.println(cus.name);
+		
 		
 	}
 
