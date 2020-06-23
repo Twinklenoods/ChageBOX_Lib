@@ -13,15 +13,16 @@ public class TestCustomer {
 		cus.password="123456";
 		cus.gender='M';
 		cus.email="astrayx56408@gmail.com";
-		cus.birthday=LocalDate.of(1990,04,01);
+		cus.birthday=LocalDate.of(1990,4,1);
+		//cus.birthday=LocalDate.now();
+		//cus.birthday=LocalDate.parse("1990-04-01");
 		System.out.println(cus.id);
 		System.out.println(cus.name);
 		System.out.println(cus.password);
 		System.out.println(cus.gender);
 		System.out.println(cus.email);
-		System.out.println(cus.birthday.getDayOfWeek());
-		
-		
+		System.out.println(cus.birthday);
+		System.out.println(cus.address);
 	}
 
 }
