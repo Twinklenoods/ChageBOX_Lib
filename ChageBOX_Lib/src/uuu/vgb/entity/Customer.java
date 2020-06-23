@@ -12,6 +12,15 @@ public class Customer {
 	public String address="";//optional(檢查是否不一樣)
 	public String phone="";//optional(檢查是否不一樣)
 	public boolean married;
+	
+	public int getAge() {
+		int thisYear =LocalDate.now().getYear();
+		//System.out.println(thisYear);
+		
+		int birthYear=this.birthday.getYear();
+		int age =thisYear-birthYear;
+		return age;
+	}
 	//public BloodType bloodType;//這個屬性將在第11章加入
 	//public int status = 1; //0:新會員, 1:已啟用, -1:已停用。這個屬性課程中都用不到
 
