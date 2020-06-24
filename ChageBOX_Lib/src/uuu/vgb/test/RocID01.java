@@ -1,43 +1,16 @@
-package uuu.vgb.entity;
-
-import java.time.LocalDate;
+package uuu.vgb.test;
+import java.io.ObjectOutputStream.PutField;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
-public class Customer {
-	public String id; //required, PKey, ROC Id(natural key)
-	public String name = ""; //required(必要)
-	public String password;
-	public char gender; //required(必要), 'M':男, 'F':女
-	public String email; //required(必要),unique index
-	public LocalDate birthday; //required(必要)需要import java.time.LocalDate, JDK 8開始才有這個類別
-	public String address="";//optional(檢查是否不一樣)
-	public String phone="";//optional(檢查是否不一樣)
-	public boolean married;
-	//public BloodType bloodType;//這個屬性將在第11章加入
-	//public int status = 1; //0:新會員, 1:已啟用, -1:已停用。這個屬性課程中都用不到
-	public void setBirthday(int year,int month,int day) {
-		this.birthday=LocalDate.of(year,month,day);
-		
-	}
-	public void setBirthday(String dateString) {
-		this.birthday=LocalDate.parse(dateString);
-	}
-	
-	
-	
-	
-	public int getAge() {//todo用periode改寫
-		if(birthday!=null) {
-		int thisYear =LocalDate.now().getYear();
-		//System.out.println(thisYear);
-		int birthYear=this.birthday.getYear();
-		int age =thisYear-birthYear;
-		return age;}else {return 0;}
-			}
-	
-	public boolean cheakID(String id) {
-		//Scanner scanner =new Scanner(System.in);//輸入ID
-		//String id =scanner.next();
+
+
+public class RocID01 {
+
+	public static void main(String[] args) {
+		Scanner scanner =new Scanner(System.in);//輸入ID
+		String id =scanner.next();
 		//if id = regular.exoression("");
 		int ans = 0;
 		char Char01 = id.charAt(0);// 將第一個字母提出來
@@ -89,27 +62,14 @@ public class Customer {
 		String sao1 ="[^a-z]";
 		int ans01 = ans % 10;
 		
-		if(id!=null&&ans01 == 0&& id.matches(sao)&&(id.length()==10)) {
-			//System.out.println(id + "正確");
-			return true;
+		if (ans01 == 0&& id.matches(sao)&&(id.length()==10)) {
+			System.out.println(id + "正確");
+			return;
+		} else if (ans01 != 0||Char02!='1'||Char02!='2'||id.matches(sao1)) {
+		System.out.println(id + "不正確");
+
 		}
-//		else if (ans01 != 0||Char02!='1'||Char02!='2'||id.matches(sao1)) {
-//		//System.out.println(id + "不正確");
-//				return false;
-//		}
-		return false;
 		
 	}
-
-
-
-
-
-
-
-
-
-
-
 
 }
