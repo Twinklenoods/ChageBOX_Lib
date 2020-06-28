@@ -82,9 +82,13 @@ public class Customer {
 		int first1=CharA.charAt(0);
 		int first2=CharA.charAt(1);
 		
+		
+		int sum =(first1-'0')+(first2-'0')*9;
 		// 公式
-		ans = (first1-48)*1 +(first2-48)*9+ (Char02 - 48) * 8 + (Char03 - 48) * 7 + (Char04 - 48) * 6 + (Char05 - 48) * 5
-				+ (Char06 - 48) * 4 + (Char07 - 48) * 3 + (Char08 - 48) * 2 + (Char09 - 48) * 1 + (Char10 - 48) * 1;
+		for (int i = 1;i<=8;i++) {
+			sum=sum+(id.charAt(i)-'0')*(9-i);}
+		
+		ans = sum+ (Char10- 48) * 1;
 		String sao ="[A-Z&&[^a-z]][1-2][0-9]{8}$"; 
 		String sao1 ="[^a-z]";
 		int ans01 = ans % 10;
@@ -101,8 +105,7 @@ public class Customer {
 		
 	}
 
-
-
+	
 
 
 
