@@ -13,21 +13,21 @@ public class TestProduct {
 		
 		
 		Product p= new Product();		
-		p.id=1;
-		p.name="動物森友會";
-		p.unitPrice=1300;
-		p.origin="台北";
-		p.stock=2;
+		p.setId(1);
+		p.setName("動物森友會");
+		p.setUnitPrice(1300);
+		p.setOrigin("台北");
+		p.setStock(2);
 		
-		System.out.println(p.name);
-		System.out.println(p.id);
-		System.out.println(p.unitPrice);
-		System.out.println(p.stock);
-		System.out.println(p.description);
-		System.out.println(p.photoUrl);
-		System.out.println(p.origin);
-		System.out.println(p.host);
-		System.out.println(p.unsold);
+		System.out.println(p.getName());
+		System.out.println(p.getId());
+		System.out.println(p.getUnitPrice());
+		System.out.println(p.getStock());
+		System.out.println(p.getDescription());
+		System.out.println(p.getPhotoUrl());
+		System.out.println(p.getOrigin());
+		System.out.println(p.getHost());
+		System.out.println(p.isUnsold());
 	
 	
 	}

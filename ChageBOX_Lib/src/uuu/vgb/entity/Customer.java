@@ -4,33 +4,51 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Customer {
-	public String id; //required, PKey, ROC Id(natural key)
-	public String name = ""; //required(必要)
-	public String password;
-	public char gender; //required(必要), 'M':男, 'F':女
-	public String email; //required(必要),unique index
-	public LocalDate birthday; //required(必要)需要import java.time.LocalDate, JDK 8開始才有這個類別
-	public String address="";//optional(檢查是否不一樣)
-	public String phone="";//optional(檢查是否不一樣)
-	public boolean married;
+	private String id; //required, PKey, ROC Id(natural key)
+	private String name = ""; //required(必要)
+	private String password;
+	private char gender; //required(必要), 'M':男, 'F':女
+	private String email; //required(必要),unique index
+	private LocalDate birthday; //required(必要)需要import java.time.LocalDate, JDK 8開始才有這個類別
+	private String address="";//optional(檢查是否不一樣)
+	private String phone="";//optional(檢查是否不一樣)
+	private boolean married;
 	//public BloodType bloodType;//這個屬性將在第11章加入
 	//public int status = 1; //0:新會員, 1:已啟用, -1:已停用。這個屬性課程中都用不到
+	
+	public String getId() {return id;}
+	public void setId(String id) {
+		if(cheakID(id)) {
+		this.id=id;
+		}else {System.out.println("身分證不正確");
+			}
+				}
+	
+	public LocalDate getBirthday() {
+		return birthday;
+		}
+	private void setBirthday(LocalDate birthday) {
+		if(birthday.isBefore(LocalDate.now())) {this.birthday=birthday;
+		}else{System.out.println("客戶生日不得大於今天"+birthday);}
+	}
+	
 	public void setBirthday(int year,int month,int day) {
-		this.birthday=LocalDate.of(year,month,day);
-		
+		LocalDate bDate=LocalDate.of(year,month,day);
+		this.birthday=bDate;
 	}
 	public void setBirthday(String dateString) {
-		this.birthday=LocalDate.parse(dateString);
+		LocalDate bDate=LocalDate.parse(dateString);
+	if(bDate.isBefore(LocalDate.now())) {this.birthday=bDate;}else{System.out.println("客戶生日不得大於今天"+dateString);}
 	}
 	
 	
 	
 	
 	public int getAge() {//todo用periode改寫
-		if(birthday!=null) {
+		if(getBirthday()!=null) {
 		int thisYear =LocalDate.now().getYear();
 		//System.out.println(thisYear);
-		int birthYear=this.birthday.getYear();
+		int birthYear=this.getBirthday().getYear();
 		int age =thisYear-birthYear;
 		return age;}else {return 0;}
 			}
@@ -82,13 +100,13 @@ public class Customer {
 			sum=sum+(id.charAt(i)-'0')*(9-i);}
 		
 		ans = sum+ (Char10- 48) * 1;
-		String sao ="[A-Z&&[^a-z]][1-2][0-9]{8}$"; 
-		String sao1 ="[^a-z]";
+		String sao ="[A-Z][1-2][0-9]{8}$"; 
+		
 		int ans01 = ans % 10;
 		
-		if(id!=null&&ans01 == 0&& id.matches(sao)&&(id.length()==10)) {
+		if(id!=null&&ans01 == 0&& id.matches(sao)) {
 			//System.out.println(id + "正確");
-			return true;
+			return true ;
 		}
 //		else if (ans01 != 0||Char02!='1'||Char02!='2'||id.matches(sao1)) {
 //		//System.out.println(id + "不正確");
@@ -97,6 +115,56 @@ public class Customer {
 		return false;
 		
 	}
+	public String getName() {
+		
+		return name;
+	}
+	public void setName(String name) {
+		if(name!=null&&name.length()>0) {
+		this.name = name;
+	}else{System.out.println("需要客戶姓名");
+		}
+			}
+	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public char getGender() {
+		return gender;
+	}
+	public void setGender(char gender) {
+		this.gender = gender;
+	}
+	public String getEmail() {
+		
+		return email;
+	}
+	public void setEmail(String email) {
+		if(email!=null&&email.matches("/^.*@gmail\\.com$/")) {;
+		this.email = email;
+	}else{System.out.println("gmail輸入錯誤");}}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public boolean isMarried() {
+		return married;
+	}
+	public void setMarried(boolean married) {
+		this.married = married;
+	}
+	
 
 	
 
