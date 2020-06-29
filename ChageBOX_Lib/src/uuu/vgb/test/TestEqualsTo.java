@@ -19,9 +19,13 @@ public class TestEqualsTo {
 		c1=c2;//其原本c1的new Customer 變成多餘的
 		System.out.println(c1==c2);//12行的Customer c1 =new Customer(); 變成garbage
 		
-	
+	for(int q =1;q<=9;q++) {
+		for(int w =1;w<=q;w++) {
+			System.out.println(q+"*"+w+"="+q*w);
+		};}
+	}
 	
 	
 	}
 
-}
+

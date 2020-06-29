@@ -25,7 +25,7 @@ public class TestCustomer {
 		System.out.println(cus.email);
 		System.out.println(cus.birthday!=null?
 				cus.birthday.getDayOfWeek():"忘記輸入生日");
-		
+		System.out.println("id"+cus.cheakID(cus.id));
 		System.out.println(cus.birthday);
 		System.out.println(cus.address);
 	}
