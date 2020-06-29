@@ -41,14 +41,7 @@ public class Customer {
 		//if id = regular.exoression("");
 		int ans = 0;
 		char Char01 = id.charAt(0);// 將第一個字母提出來
-		char Char02 = id.charAt(1);
-		char Char03 = id.charAt(2);
-		char Char04 = id.charAt(3);
-		char Char05 = id.charAt(4);
-		char Char06 = id.charAt(5);
-		char Char07 = id.charAt(6);
-		char Char08 = id.charAt(7);
-		char Char09 = id.charAt(8);
+		
 		char Char10 = id.charAt(9);
 		
 		String CharA ="";
