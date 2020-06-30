@@ -1,7 +1,7 @@
 package uuu.vgb.entity;
 
 import java.time.LocalDate;
-import java.util.Scanner;
+
 
 public class Customer {
 	private String id; //required, PKey, ROC Id(natural key)
@@ -27,18 +27,20 @@ public class Customer {
 	public LocalDate getBirthday() {
 		return birthday;
 		}
-	private void setBirthday(LocalDate birthday) {
+	public void setBirthday(LocalDate birthday) {
 		if(birthday.isBefore(LocalDate.now())) {this.birthday=birthday;
 		}else{System.out.println("客戶生日不得大於今天"+birthday);}
 	}
 	
 	public void setBirthday(int year,int month,int day) {
 		LocalDate bDate=LocalDate.of(year,month,day);
-		this.birthday=bDate;
+		if(bDate.isBefore(LocalDate.now())) {this.birthday=bDate;}
+		else{System.out.println("客戶生日不得大於今天");}
 	}
 	public void setBirthday(String dateString) {
 		LocalDate bDate=LocalDate.parse(dateString);
-	if(bDate.isBefore(LocalDate.now())) {this.birthday=bDate;}else{System.out.println("客戶生日不得大於今天"+dateString);}
+	if(bDate.isBefore(LocalDate.now())) {this.birthday=bDate;}
+	else{System.out.println("客戶生日不得大於今天"+dateString);}
 	}
 	
 	
@@ -58,6 +60,9 @@ public class Customer {
 		//String id =scanner.next();
 		//if id = regular.exoression("");
 		int ans = 0;
+		String sao ="[A-Z][1-2][0-9]{8}$"; 
+		int ans01 = ans % 10;
+		if(id!=null&&ans01 == 0&& id.matches(sao)) {
 		char Char01 = id.charAt(0);// 將第一個字母提出來
 		
 		char Char10 = id.charAt(9);
@@ -100,11 +105,11 @@ public class Customer {
 			sum=sum+(id.charAt(i)-'0')*(9-i);}
 		
 		ans = sum+ (Char10- 48) * 1;
-		String sao ="[A-Z][1-2][0-9]{8}$"; 
 		
-		int ans01 = ans % 10;
 		
-		if(id!=null&&ans01 == 0&& id.matches(sao)) {
+		
+		
+		
 			//System.out.println(id + "正確");
 			return true ;
 		}
@@ -130,20 +135,28 @@ public class Customer {
 		return password;
 	}
 	public void setPassword(String password) {
-		this.password = password;
+		if(password!=null&&password.length()>=6&&password.length()<20) {
+			this.password = password;
+		}else{System.out.println("需要輸入6-20的密碼");
+			}
 	}
 	public char getGender() {
+		
 		return gender;
 	}
 	public void setGender(char gender) {
+		if(gender=='M'||gender=='F') {
 		this.gender = gender;
-	}
+	}else {
+			System.out.println("性別不正確('M'-男,'F'-女)"+gender);
+		}
+			}
 	public String getEmail() {
 		
 		return email;
 	}
 	public void setEmail(String email) {
-		if(email!=null&&email.matches("/^.*@gmail\\.com$/")) {;
+		if(email!=null&&email.matches("^.*@gmail\\.com$")) {
 		this.email = email;
 	}else{System.out.println("gmail輸入錯誤");}}
 	public String getAddress() {
@@ -156,8 +169,11 @@ public class Customer {
 		return phone;
 	}
 	public void setPhone(String phone) {
+		if(phone!=null&&password.length()>=6) {
 		this.phone = phone;
-	}
+	}else {System.out.println("請輸入正確的電話號碼"+phone);
+			}
+				}
 	public boolean isMarried() {
 		return married;
 	}
@@ -165,11 +181,15 @@ public class Customer {
 		this.married = married;
 	}
 	
+	public Customer() {}
+	public Customer(String id,String pwd,LocalDate birthday) {
+		this.setId(id);
+		this.setPassword(pwd);
+		this.setBirthday(birthday);
+	}
+
 
 	
-
-
-
 
 
 

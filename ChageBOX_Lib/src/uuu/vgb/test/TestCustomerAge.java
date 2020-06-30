@@ -16,10 +16,10 @@ public class TestCustomerAge {
 		//cus.birthday=LocalDate.of(1990,4,1);
 		//cus.birthday=LocalDate.now();
 		//cus.birthday=LocalDate.parse("1999-04-01");
-		cus.setBirthday(1999,1,4);
-		
-		//String bDate="1999-06-09";
-		//cus.setBirthday(bDate);
+		//cus.setBirthday(1999,1,4);
+		//System.out.println(cus.getBirthday());
+		//String bDate="2999-06-09";
+		cus.setBirthday("1999-06-09");
 		System.out.println(cus.getBirthday());
 		
 		cus.setPhone("0912294389");
