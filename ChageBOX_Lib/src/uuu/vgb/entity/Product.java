@@ -3,12 +3,12 @@ package uuu.vgb.entity;
 public class Product {
 	private int id;//Pkey,AUTO_INCREMENT(surrogste key)
 	private String name="";//可重複品項名稱,required
-	protected double unitPrice;//單價,required
+	private double unitPrice;//單價,required
 	private int stock;//庫存
 	private String description="";//描述
 	private String photoUrl;//照片
 	private String origin="";//面交地點,required
-	private String host="";//主機,required
+	private char host;//主機,P-PS4,S-Switch,required
 	private boolean unsold;//未出售(是否出售)
 	//public int status = 1; //0:新產品, 1:已上架, -1:已停售，這個屬性目前用不到
 	public Product(){}
@@ -72,16 +72,41 @@ public class Product {
 	public void setOrigin(String origin) {
 		this.origin = origin;
 	}
-	public String getHost() {
+	public char getHost() {
 		return host;
 	}
-	public void setHost(String host) {
-		this.host = host;
+	public void setHost(char host) {
+		if(host!=0&&host=='P'||host=='S') {
+			this.host = host;}
+	else {
+		System.out.println("請選擇主機類別(P-PS4,S-Switch)");
 	}
+		}
 	public boolean isUnsold() {
 		return unsold;
 	}
 	public void setUnsold(boolean unsold) {
+		
+		
 		this.unsold = unsold;
 	}
+
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName()
+				+"{"+"id=" + id +"\n"
+				+ "品項名稱=" + name+"\n" 
+				+ "定價=" + unitPrice +"\n"
+				+"庫存=" + stock+"\n"
+				+ "描述=" + description +"\n"
+				+ "photoUrl=" + photoUrl +"\n"
+				+"地點=" + origin+"\n"
+				+ "主機=" + host+"\n"
+				+  (unsold?"出售":"未出售") +"}";
+	}
+	
+	
+	
 }
+
+

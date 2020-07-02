@@ -187,6 +187,19 @@ public class Customer {
 		this.setPassword(pwd);
 		this.setBirthday(birthday);
 	}
+	@Override
+	public String toString() {
+		 return this.getClass().getSimpleName()+
+				"id=" + id +"\n"+ 
+				" 名子=" + name +"\n"+ 
+				" password=" + password +"\n"+ 
+				" gender=" + gender + "\n"+
+				" email="+ email + "\n"+
+				" birthday=" + birthday +"\n"+ 
+				" address=" + address + "\n"+
+				" phone=" + phone + "\n"+
+				" married="+ married ;
+	}
 
 
 	

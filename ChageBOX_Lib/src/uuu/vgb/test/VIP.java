@@ -15,6 +15,13 @@ class VIP extends Customer {
 	if(discount%10==0) {discount/=10;}
 	return discount+"折";
 		}
-			}
+	@Override
+	public String toString() {
+		return super.toString()
+				+ "[discount=" + discount + ", toString()=" + super.toString() + "]";
+	}
+			
+
+}
 	
 	

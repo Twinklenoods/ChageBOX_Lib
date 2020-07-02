@@ -11,7 +11,7 @@ public class TestCustomerAge {
 		cus.setId("A123123123");
 		cus.setName("吳大頭");
 		cus.setPassword("123456");
-		cus.setGender('M');
+		cus.setGender('1');
 		cus.setEmail("astrayx56408@gmail.com");
 		//cus.birthday=LocalDate.of(1990,4,1);
 		//cus.birthday=LocalDate.now();

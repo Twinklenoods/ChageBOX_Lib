@@ -6,7 +6,7 @@ import uuu.vgb.entity.Product;
 public class TestProduct {
 
 	public static void main(String[] args) {
-		System.out.println(args.length);
+		//System.out.println(args.length);
 		int i =1;
 		int j =i;
 		
@@ -18,17 +18,17 @@ public class TestProduct {
 		p.setUnitPrice(1300);
 		p.setOrigin("台北");
 		p.setStock(2);
-		
-		System.out.println(p.getName());
-		System.out.println(p.getId());
-		System.out.println(p.getUnitPrice());
-		System.out.println(p.getStock());
-		System.out.println(p.getDescription());
-		System.out.println(p.getPhotoUrl());
-		System.out.println(p.getOrigin());
-		System.out.println(p.getHost());
-		System.out.println(p.isUnsold());
-	
+		p.setHost('P');
+		//System.out.println(p.getName());
+		//System.out.println(p.getId());
+		//System.out.println(p.getUnitPrice());
+		//System.out.println(p.getStock());
+		//System.out.println(p.getDescription());
+		//System.out.println(p.getPhotoUrl());
+		//System.out.println(p.getOrigin());
+		//System.out.println(p.getHost());
+		//System.out.println(p.isUnsold());
+	System.out.println("p:"+p.toString());
 	
 	}
 	
