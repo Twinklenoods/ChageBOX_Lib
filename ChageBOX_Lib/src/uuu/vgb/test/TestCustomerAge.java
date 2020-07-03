@@ -19,7 +19,7 @@ public class TestCustomerAge {
 		//cus.setBirthday(1999,1,4);
 		//System.out.println(cus.getBirthday());
 		//String bDate="2999-06-09";
-		cus.setBirthday("2022-06-09");
+		cus.setBirthday(1990,4,1);
 		System.out.println(cus.getBirthday());
 		
 		cus.setPhone("0912294389");

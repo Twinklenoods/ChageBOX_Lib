@@ -56,13 +56,13 @@ public class Customer {
 		int age =thisYear-birthYear;
 		return age;}else {return 0;}
 			}
-	
+	public static String sao ="[A-Z][1-2][0-9]{8}$";
 	public boolean cheakID(String id) {
 		//Scanner scanner =new Scanner(System.in);//輸入ID
 		//String id =scanner.next();
 		//if id = regular.exoression("");
 		int ans = 0;
-		String sao ="[A-Z][1-2][0-9]{8}$"; 
+		 
 		int ans01 = ans % 10;
 		if(id!=null&&ans01 == 0&& id.matches(sao)) {
 		char Char01 = id.charAt(0);// 將第一個字母提出來
