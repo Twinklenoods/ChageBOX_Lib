@@ -9,7 +9,7 @@ import uuu.vgb.entity.Customer;
 public class TestCustomer {
 
 	public static void main(String[] args) {
-		Customer cus = new Customer("A1023456789","123456",LocalDate.of(1990,4,1));
+		Customer cus = new Customer("A1023456789","123456",LocalDate.parse("1990-01-04"));
 		
 		
 		//Customer cus = new Customer();

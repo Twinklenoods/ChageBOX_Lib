@@ -28,7 +28,9 @@ public class Customer {
 		return birthday;
 		}
 	public void setBirthday(LocalDate birthday) {
-		if(birthday.isBefore(LocalDate.now())) {this.birthday=birthday;
+		if(birthday.isBefore(LocalDate.now())){ 
+			
+			this.birthday=birthday;
 		}else{System.out.println("客戶生日不得大於今天"+birthday);}
 	}
 	
@@ -209,15 +211,17 @@ public class Customer {
 	}
 	@Override
 	public boolean equals(Object obj) {
-		boolean rit = false;
-		if(this==obj)return true;
-		if(obj instanceof Customer) {
-			Customer otherCustomer=(Customer)obj;
-			if(this.id!=null&&this.id.equals(otherCustomer.id)) {
-				rit= true;
-			}
-		}
-		return rit;
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Customer))
+			return false;
+		Customer other = (Customer) obj;
+		if (id == null) {
+			//if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 
 

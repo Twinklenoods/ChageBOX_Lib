@@ -11,10 +11,10 @@ public class TestEqualsTo {
 		System.out.println(i==j);//true
 		
 		Customer c1 =new Customer();
-		c1.setId("A123456789");
+		c1.setId(null);
 		
 		Customer c2 =new Customer();
-		c2.setId("A123456789");
+		c2.setId(null);
 		
 		System.out.println(c1==c2);//false 因為不同物件
 		System.out.println("c1.equals(c2):"+c1.equals(c2));

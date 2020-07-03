@@ -1,26 +1,26 @@
 package uuu.vgb.entity;
 
 public class Outlet extends Product {
-	private int discount=102;//手續費
+	private int discount=2;//手續費
 
 	public int getDiscount() {
 		return discount;
 	}
 
 	public void setDiscount(int discount) {
-		if(discount>100&&discount<120) {this.discount = discount;}
-		else {System.out.println("手續費必須在100~120%之間");}
+		if(discount>0&&discount<100) {this.discount = discount;}
+		else {System.out.println("手續費必須在1~100%之間");}
 	}
 	
 	
 	public String getDiscount2() {
-		int discount =this.discount-100;
+		int discount =this.discount;
 	
 	return discount+"%手續費";
 		}
 			
 	public double getUnitPrice3(){//手續費
-		double price=super.getUnitPrice()*discount/100-super.getUnitPrice();
+		double price=super.getUnitPrice()*discount/100;
 		return price;
 	}
 	public double getUnitPrice(){//賣家實收
