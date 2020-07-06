@@ -4,6 +4,11 @@ import java.time.LocalDate;
 
 
 public class Customer {
+	
+	public static char MALE='M';
+	public static char FEMALE='F';
+	public static String GMAIL="^.*@gmail\\.com$";
+	
 	private String id; //required, PKey, ROC Id(natural key)
 	private String name = ""; //required(必要)
 	private String password;
@@ -13,10 +18,19 @@ public class Customer {
 	private String address="";//optional(檢查是否不一樣)
 	private String phone="";//optional(檢查是否不一樣)
 	private boolean married;
-	//public BloodType bloodType;//這個屬性將在第11章加入
+	private BloodType bloodType;//這個屬性將在第11章加入
 	//public int status = 1; //0:新會員, 1:已啟用, -1:已停用。這個屬性課程中都用不到
 	
-	public String getId() {return id;}
+	public BloodType getBloodType() {
+		return bloodType;
+	}
+	public void setBloodType(BloodType bloodType) {
+		this.bloodType = bloodType;
+	}
+	public String getId() {
+		return id;
+		}
+	
 	public void setId(String id) {
 		if(cheakID(id)) {
 		this.id=id;
@@ -31,36 +45,29 @@ public class Customer {
 		if(birthday.isBefore(LocalDate.now())){ 
 			
 			this.birthday=birthday;
-		}else{System.out.println("客戶生日不得大於今天"+birthday);}
+		}else{System.out.println("生日不得小於今天"+birthday);}
 	}
 	
 	public void setBirthday(int year,int month,int day) {
 		LocalDate bDate=LocalDate.of(year,month,day);
-		if(bDate.isBefore(LocalDate.now())) {this.birthday=bDate;}
-		else{System.out.println("客戶生日不得大於今天");}
+		this.birthday=bDate;	
 	}
 	public void setBirthday(String dateString) {
 		LocalDate bDate=LocalDate.parse(dateString);
-	if(bDate.isBefore(LocalDate.now())) {this.birthday=bDate;}
-	else{System.out.println("客戶生日不得大於今天"+dateString);}
+	this.birthday=bDate;
 	}
-	
-	
-	
 	
 	public int getAge() {//todo用periode改寫
 		if(getBirthday()!=null) {
 		int thisYear =LocalDate.now().getYear();
-		//System.out.println(thisYear);
+	
 		int birthYear=this.getBirthday().getYear();
 		int age =thisYear-birthYear;
 		return age;}else {return 0;}
 			}
-	public static String sao ="[A-Z][1-2][0-9]{8}$";
-	public boolean cheakID(String id) {
-		//Scanner scanner =new Scanner(System.in);//輸入ID
-		//String id =scanner.next();
-		//if id = regular.exoression("");
+	private static final String sao ="[A-Z][1-2][0-9]{8}$";
+	public static boolean cheakID(String id) {
+		
 		int ans = 0;
 		 
 		int ans01 = ans % 10;
@@ -112,13 +119,9 @@ public class Customer {
 		
 		
 		
-			//System.out.println(id + "正確");
+		
 			return true ;
-		}
-//		else if (ans01 != 0||Char02!='1'||Char02!='2'||id.matches(sao1)) {
-//		//System.out.println(id + "不正確");
-//				return false;
-//		}
+		}	
 		return false;
 		
 	}
@@ -147,7 +150,7 @@ public class Customer {
 		return gender;
 	}
 	public void setGender(char gender) {
-		if(gender=='M'||gender=='F') {
+		if(gender==MALE||gender==FEMALE) {
 		this.gender = gender;
 	}else {
 			System.out.println("性別不正確('M'-男,'F'-女)"+gender);
@@ -158,7 +161,7 @@ public class Customer {
 		return email;
 	}
 	public void setEmail(String email) {
-		if(email!=null&&email.matches("^.*@gmail\\.com$")) {
+		if(email!=null&&email.matches(GMAIL)) {
 		this.email = email;
 	}else{System.out.println("gmail輸入錯誤");}}
 	public String getAddress() {

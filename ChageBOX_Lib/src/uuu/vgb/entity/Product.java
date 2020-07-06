@@ -1,6 +1,12 @@
 package uuu.vgb.entity;
 
+
+
 public class Product {
+	public static char PS4 ='P';
+	public static char Switch ='S';
+	
+	
 	private int id;//Pkey,AUTO_INCREMENT(surrogste key)
 	private String name="";//可重複品項名稱,required
 	private double unitPrice;//單價,required
@@ -35,11 +41,11 @@ public class Product {
 	}
 	
 	public void setName(String name) {
-		//if(name!=null&&name.length()>0) 
-		//{
+		if(name!=null&&name.length()>0) 
+		{
 		this.name = name;
-	//}else{System.out.println("需要產品名稱");
-	//	}
+	}else{System.out.println("需要產品名稱");
+		}
 			}
 	
 	public double getUnitPrice() {
@@ -52,8 +58,14 @@ public class Product {
 		return stock;
 	}
 	public void setStock(int stock) {
-		this.stock = stock;
+		if(stock>=0) {
+			this.stock = stock;		
 	}
+		else{
+		System.out.println("不得小於0");
+	}
+		}
+	
 	public String getDescription() {
 		return description;
 	}
@@ -76,7 +88,7 @@ public class Product {
 		return host;
 	}
 	public void setHost(char host) {
-		if(host!=0&&host=='P'||host=='S') {
+		if(host==PS4||host==Switch) {
 			this.host = host;}
 	else {
 		System.out.println("請選擇主機類別(P-PS4,S-Switch)");
@@ -127,8 +139,5 @@ public class Product {
 				+  (unsold?"出售":"未出售") +"}";
 	}
 	
-	
-	
-}
-
+	}
 

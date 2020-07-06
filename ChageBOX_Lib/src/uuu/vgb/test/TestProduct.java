@@ -19,6 +19,7 @@ public class TestProduct {
 		p.setOrigin("台北");
 		p.setStock(2);
 		p.setHost('P');
+		
 		//System.out.println(p.getName());
 		//System.out.println(p.getId());
 		//System.out.println(p.getUnitPrice());
