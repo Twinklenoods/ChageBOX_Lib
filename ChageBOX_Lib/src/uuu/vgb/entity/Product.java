@@ -99,7 +99,6 @@ public class Product {
 	}
 	public void setUnsold(boolean unsold) {
 		
-		
 		this.unsold = unsold;
 	}
 	
