@@ -1,2 +1,4 @@
 /Product$serialnumber.class
 /BloodType.class
+/VGBException.class
+/DataInvalidException.class

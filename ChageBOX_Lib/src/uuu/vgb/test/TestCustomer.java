@@ -10,7 +10,7 @@ import uuu.vgb.entity.Customer;
 public class TestCustomer {
 
 	public static void main(String[] args) {
-		Customer cus = new Customer("A1023456789","123456",LocalDate.parse("2022-01-04"));
+		Customer cus = new Customer("A123456789","123456",LocalDate.parse("2000-01-04"));
 		
 		cus.setBloodType(BloodType.O);
 		

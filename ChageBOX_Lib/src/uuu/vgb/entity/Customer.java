@@ -1,6 +1,7 @@
 package uuu.vgb.entity;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 
 public class Customer {
@@ -32,10 +33,12 @@ public class Customer {
 		}
 	
 	public void setId(String id) {
-		if(cheakID(id)) {
+		if(checkId(id)) {
 		this.id=id;
-		}else {System.out.println("身分證不正確");
-			}
+		}else {
+			//System.out.println("身分證不正確");
+			throw new DataInvalidException("身分證不正確");
+		}
 				}
 	
 	public LocalDate getBirthday() {
@@ -45,7 +48,10 @@ public class Customer {
 		if(birthday.isBefore(LocalDate.now())){ 
 			
 			this.birthday=birthday;
-		}else{System.out.println("生日不得小於今天"+birthday);}
+		}else{
+			//System.out.println("生日不得小於今天"+birthday);
+			throw new DataInvalidException("生日不得小於今天"+birthday);
+		}
 	}
 	
 	public void setBirthday(int year,int month,int day) {
@@ -53,8 +59,12 @@ public class Customer {
 		this.birthday=bDate;	
 	}
 	public void setBirthday(String dateString) {
+	try {
 		LocalDate bDate=LocalDate.parse(dateString);
-	this.birthday=bDate;
+		this.birthday=bDate;
+	}catch(DateTimeParseException ex) {
+		throw new DataInvalidException("客戶格式不正確");
+		}
 	}
 	
 	public int getAge() {//todo用periode改寫
@@ -65,63 +75,66 @@ public class Customer {
 		int age =thisYear-birthYear;
 		return age;}else {return 0;}
 			}
-	private static final String sao ="[A-Z][1-2][0-9]{8}$";
-	public static boolean cheakID(String id) {
-		
-		int ans = 0;
-		 
-		int ans01 = ans % 10;
-		if(id!=null&&ans01 == 0&& id.matches(sao)) {
-		char Char01 = id.charAt(0);// 將第一個字母提出來
-		
-		char Char10 = id.charAt(9);
-		
-		String CharA ="";
-		if (Char01 == 'A'){
-			CharA ="10";
+	public static String idPattern = "[A-Z][12][0-9]{8}";
+	public boolean checkId(String id){
+		//商業邏輯開始
+		if (id!=null && id.matches(idPattern)) { // 用regular expression檢查id字串格式
+			char firstChar = id.charAt(0);
+			
+			// 1. 將第1個英文字母(A-Z)轉成對應的數字
+			int firstNum = 0;
+			if (firstChar >= 'A' && firstChar <= 'H') {
+				firstNum = (int)firstChar - 'A' + 10;
+			} else if (firstChar >= 'J' && firstChar <= 'N') {
+				firstNum = (int)firstChar - 'J' + 18;
+			} else if (firstChar >= 'P' && firstChar <= 'V') {
+				firstNum = (int)firstChar - 'J' + 23;
+			} else { 
+//			
+				
+				switch(firstChar) {
+				default:
+					return false;					
+				case 'O':
+					firstNum = 35;
+					break;
+				case 'I':
+						firstNum = 34;
+						break;
+				case 'X':
+					firstNum = 30;
+					break;
+				case 'Y':
+					firstNum = 31;
+					break;
+				case 'W':
+						firstNum = 32;
+						break;
+				case 'Z':
+						firstNum = 33;
+						break;
+				}				
 			}
-		if (Char01 == 'B') {CharA = "11";}
-		if (Char01 == 'C') {CharA = "12";}
-		if (Char01 == 'D') {CharA = "13";}
-		if (Char01 == 'E') {CharA = "14";}
-		if (Char01 == 'F') {CharA = "15";}
-		if (Char01 == 'G') {CharA = "16";}
-		if (Char01 == 'H') {CharA = "17";}
-		if (Char01 == 'I') {CharA = "34";}
-		if (Char01 == 'J') {CharA = "18";}
-		if (Char01 == 'K') {CharA = "19";}
-		if (Char01 == 'L') {CharA = "20";}
-		if (Char01 == 'M') {CharA = "21";}
-		if (Char01 == 'N') {CharA = "22";}
-		if (Char01 == 'O') {CharA = "35";}
-		if (Char01 == 'P') {CharA = "23";}
-		if (Char01 == 'Q') {CharA = "24";}
-		if (Char01 == 'R') {CharA = "25";}
-		if (Char01 == 'S') {CharA = "26";}
-		if (Char01 == 'T') {CharA = "27";}
-		if (Char01 == 'U') {CharA = "28";}
-		if (Char01 == 'V') {CharA = "29";}
-		if (Char01 == 'X') {CharA = "30";}
-		if (Char01 == 'Y') {CharA = "31";}
-
-		int first1=CharA.charAt(0);
-		int first2=CharA.charAt(1);
+			
+			System.out.println(firstChar +"->"+firstNum);
+		
+			int sum = firstNum/10 + firstNum%10*9;			
+			
+			for(int i=1;i<=8;i++) {
+				sum = sum + ((id.charAt(i)-'0') * (9-i));
+				
+			}
+			
+			
+			sum = sum + ((id.charAt(9)-'0') * 1);
+			
+			if(sum%10 == 0) {
+				
+				return true;
+			}
+		}
 		
 		
-		int sum =(first1-'0')+(first2-'0')*9;
-		// 公式
-		for (int i = 1;i<=8;i++) {
-			sum=sum+(id.charAt(i)-'0')*(9-i);}
-		
-		ans = sum+ (Char10- 48) * 1;
-		
-		
-		
-		
-		
-		
-			return true ;
-		}	
 		return false;
 		
 	}
@@ -132,7 +145,9 @@ public class Customer {
 	public void setName(String name) {
 		if(name!=null&&name.length()>0) {
 		this.name = name;
-	}else{System.out.println("需要客戶姓名");
+	}else{
+		
+		throw new DataInvalidException("需要客戶姓名");
 		}
 			}
 	
@@ -142,7 +157,9 @@ public class Customer {
 	public void setPassword(String password) {
 		if(password!=null&&password.length()>=6&&password.length()<20) {
 			this.password = password;
-		}else{System.out.println("需要輸入6-20的密碼");
+		}else{
+			
+			throw new DataInvalidException("需要輸入6-20的密碼");
 			}
 	}
 	public char getGender() {
@@ -153,7 +170,8 @@ public class Customer {
 		if(gender==MALE||gender==FEMALE) {
 		this.gender = gender;
 	}else {
-			System.out.println("性別不正確('M'-男,'F'-女)"+gender);
+			
+			throw new DataInvalidException("性別不正確('M'-男,'F'-女)"+gender);
 		}
 			}
 	public String getEmail() {
@@ -163,7 +181,10 @@ public class Customer {
 	public void setEmail(String email) {
 		if(email!=null&&email.matches(GMAIL)) {
 		this.email = email;
-	}else{System.out.println("gmail輸入錯誤");}}
+	}else{
+	throw new DataInvalidException("gmail輸入錯誤");
+	}}
+			
 	public String getAddress() {
 		return address;
 	}
@@ -176,7 +197,8 @@ public class Customer {
 	public void setPhone(String phone) {
 		if(phone!=null&&password.length()>=6) {
 		this.phone = phone;
-	}else {System.out.println("請輸入正確的電話號碼"+phone);
+	}else {
+			throw new DataInvalidException("請輸入正確的電話號碼"+phone);
 			}
 				}
 	public boolean isMarried() {
