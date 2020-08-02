@@ -18,16 +18,10 @@ public class Customer {
 	private LocalDate birthday; //required(必要)需要import java.time.LocalDate, JDK 8開始才有這個類別
 	private String address="";//optional(檢查是否不一樣)
 	private String phone="";//optional(檢查是否不一樣)
-	private boolean married;
-	private BloodType bloodType;//這個屬性將在第11章加入
+	//private boolean married;
 	//public int status = 1; //0:新會員, 1:已啟用, -1:已停用。這個屬性課程中都用不到
 	
-	public BloodType getBloodType() {
-		return bloodType;
-	}
-	public void setBloodType(BloodType bloodType) {
-		this.bloodType = bloodType;
-	}
+	
 	public String getId() {
 		return id;
 		}
@@ -201,12 +195,12 @@ public class Customer {
 			throw new DataInvalidException("請輸入正確的電話號碼"+phone);
 			}
 				}
-	public boolean isMarried() {
-		return married;
-	}
-	public void setMarried(boolean married) {
-		this.married = married;
-	}
+//	public boolean isMarried() {
+//		return married;
+//	}
+//	public void setMarried(boolean married) {
+//		this.married = married;
+//	}
 	
 	public Customer() {}
 	public Customer(String id,String pwd,LocalDate birthday) {
@@ -224,8 +218,8 @@ public class Customer {
 				" email="+ email + "\n"+
 				" birthday=" + birthday +"\n"+ 
 				" address=" + address + "\n"+
-				" phone=" + phone + "\n"+
-				" married="+ married ;
+				" phone=" + phone + "\n"
+				;
 	}
 	@Override
 	public int hashCode() {

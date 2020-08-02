@@ -17,12 +17,12 @@ public class TestProduct2 {
 		//p.setName("動物森友會");
 		//p.setUnitPrice(1300);
 		p.setOrigin("台北");
-		p.setStock(2);
+	
 		
 		System.out.println(p.getName());
 		System.out.println(p.getId());
 		System.out.println(p.getUnitPrice());
-		System.out.println(p.getStock());
+	
 		//System.out.println(p.getDescription());
 		//System.out.println(p.getPhotoUrl());
 		System.out.println(p.getOrigin());

@@ -17,8 +17,8 @@ public class TestProduct {
 		p.setName("動物森友會");
 		p.setUnitPrice(1300);
 		p.setOrigin("台北");
-		p.setStock(2);
-		p.setHost('P');
+		
+	
 		
 		//System.out.println(p.getName());
 		//System.out.println(p.getId());
