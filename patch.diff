@@ -1,0 +1,668 @@
+From 87c7e9eba7d6280b474d761adf7d4061ae99d056 Mon Sep 17 00:00:00 2001
+From: Twinkle <seed6408@gmail.com>
+Date: Tue, 30 Jun 2020 18:39:16 +0800
+Subject: [PATCH] =?UTF-8?q?=E7=B9=BC=E6=89=BF&=E5=B0=81=E8=A3=9D&over=20ri?=
+ =?UTF-8?q?ding=20(=E5=90=AB=E6=B8=AC=E8=A9=A6)?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ .../bin/uuu/vgb/entity/Customer.class         | Bin 4572 -> 5159 bytes
+ ChageBOX_Lib/bin/uuu/vgb/entity/Product.class | Bin 2139 -> 2327 bytes
+ .../bin/uuu/vgb/test/TestCustomer.class       | Bin 2001 -> 1486 bytes
+ .../bin/uuu/vgb/test/TestCustomerAge.class    | Bin 1703 -> 1707 bytes
+ ChageBOX_Lib/src/uuu/vgb/entity/Customer.java |  48 +++++++++++++-----
+ ChageBOX_Lib/src/uuu/vgb/entity/Outlet.java   |  33 ++++++++++++
+ ChageBOX_Lib/src/uuu/vgb/entity/Product.java  |  23 ++++++++-
+ .../src/uuu/vgb/test/TestCustomer.java        |  28 ++++++----
+ .../src/uuu/vgb/test/TestCustomerAge.java     |   8 +--
+ .../src/uuu/vgb/test/TestProduct2.java        |  36 +++++++++++++
+ ChageBOX_Lib/src/uuu/vgb/test/TestVIP.java    |  24 +++++++++
+ ChageBOX_Lib/src/uuu/vgb/test/Testout.java    |  20 ++++++++
+ ChageBOX_Lib/src/uuu/vgb/test/VIP.java        |  20 ++++++++
+ 13 files changed, 209 insertions(+), 31 deletions(-)
+ create mode 100644 ChageBOX_Lib/src/uuu/vgb/entity/Outlet.java
+ create mode 100644 ChageBOX_Lib/src/uuu/vgb/test/TestProduct2.java
+ create mode 100644 ChageBOX_Lib/src/uuu/vgb/test/TestVIP.java
+ create mode 100644 ChageBOX_Lib/src/uuu/vgb/test/Testout.java
+ create mode 100644 ChageBOX_Lib/src/uuu/vgb/test/VIP.java
+
+diff --git a/ChageBOX_Lib/bin/uuu/vgb/entity/Customer.class b/ChageBOX_Lib/bin/uuu/vgb/entity/Customer.class
+index 12a4a2b687014e62a01157ffd0a542ee02057dc3..af64d71483b724f43ba0bb012b1566f6c24c05d2 100644
+GIT binary patch
+literal 5159
+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
+SHJ#ZwhNWD?KWQ@u|N1{9+tdL7
+
+literal 4572
+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
+A%K!iX
+
+diff --git a/ChageBOX_Lib/bin/uuu/vgb/entity/Product.class b/ChageBOX_Lib/bin/uuu/vgb/entity/Product.class
+index aa9aed1bae7f5492b86ee1cde1fe677670308637..5f4f30c465ef0ecce99041b91771e80ace81dade 100644
+GIT binary patch
+literal 2327
+zcmaKsTTc@~6vzM58>OtM2&f?96}JVccf5fp6|FWxM0mibQZ{9^cFlHc;`i`ln5c=w
+z#0NisAIkVYvkR@u)R(!OIdjhMTxNd%`S}aLRaE+rP#A5u+r<y{t)kNm+~8wz)%UjB
+zwV)3vg(GjOAF9PhwOKE&Y`t-6fkMLFR#0VyRI~cdQ5dRpbk+jjZPxE8^tYRCu<E-t
+zDyWh|x)pe}w+aK>POIj-?*rFsDrDd9c!9U>Hxx3S@77()QafIYUNY@w%WH_IO>XYH
+zG`FCTwDTKOS@O1>9FiEdFoa`SoKQeN6viy{AuFp>7OZe}+QMMCI%DB5vI>VQZqs?u
+zez)cLuc})O9fDV@Ha4ohEBi>83U=I<!ikDGJq+@=T|O9lDZe2Amn@`_kyYLzTaGEH
+zJ3*NNF$N|t-3oUpyDTB~@$iLC=dhhWXp{=n4;4o2gXdzxqKWlR*6D_Mw|K2fn6in-
+zyi;{e3L<>BEes$-Ayu_dVUXvg?m`Xn>>t4ZHCChIiID{hha|THRNRxZ3#hdc)wQ1|
+zduxgIsV=jG6|S;wYdtDC(Kp5D6AMRhlxC>3cb2j@C4$_V*Y<19vMc4YqK=)FM#Nd(
+zOtQWEk&qH_m5{FBoRUK5Jp<M=dqmG<*E2gs&+HRD(>>>5T4bMb9Omvd?Xll5QTTz8
+z!qD+uoYdpE9w+oT`AuIx%W+J*8l>|yoo5+Q4x`NYDYoS~o?D?YoW}+3#L>mb(I<wH
+zrflYajtb+um@3Q&M1B``$L|z_1@RC19b$@(VT!>_V?;9)s6{^!gRCTR66B0dT|%!U
+zc}YqOycedT$XT?~h3}a9%teBx5nUbY3NO7M-V82BmlvolhBG>Z4tP#WCy8)ITNn+s
+z_Te%SoWd*wKx)zra`I~o<eU-Y3je?GatCCZX^ex|bT{1tMA}L+a1Gb@LBi&cjM!gd
+zAhSl08@Ra-lGL4>DO~!elwn4$669JB5Gjp-+%lGCE?$}&Mvyz^(#*v(GDncxJwW7P
+z3CLYzX~yHFxoZTuXD-cn9Aus#3q3&OWedoCBglLlWYGxnzzi}U2U#LWsRxLBEdsJ=
+z1eu6~EE_={nn5PwAZ3C)>j5Hvn}9qrf=tFiDn^hcGf3Be7dGn(K~{T!$mc2`B|PRB
+nf4<A{W_@V{d5Us$x$}Ja6)wj!vQChV9w73&3&=D5PM`k;r;rh~
+
+delta 733
+zcmZvZF;Cl26ot>V^WujSH6(%1DzqqV+=M_v+|UGQ650SQp#uv)fhtqCE}f8AJ5_Js
+z2QVR3Dv`*-P<8HKsKnl_j4X)jixnh;EIsSJcl@1mu8%T*C*42S=f42>_&9XClv9IG
+zU;6t5yFA~Y0HK_OLfjnEzzw#ql9+&N{*gy5ld?9cWA>~)dT&mwU9!xT)uOEN?OxSJ
+zj6ZatG0AHV3CzOAb9PEH26&1WDDs=&;iVy+&6Ixd)<S{TxJXjwe{8xsj|%Um__WKn
+zR&ZO%k5C$p)vlao*e+`>^^Ex))Aj-u1E{%(rD;0g*j3bwR-Ssyx+j6I?r=EbX9@Mt
+zVTnmWI8`}=|8s0`8z(QA2A0itHI?(D{?C{@7jP3iAmP3ai#4Og3Q}z4;bP4wxX55n
+zzzG=)VKprGHJ+xDq*~*0$8nD;rl#_VWLWIYtuE6(jZ~>hfG%ob@4Lw^jL?n-sB-{c
+zCi~gZ_Ihak%}G;3%-^#4$njK@bu9_{C=BpUv_)DKU5|BL?Ws2FI>I~9+TOsX{Qj-z
+cl-4EW2W;O9$-jRq8nVaG4TjD+eJQ(h1H2++9RL6T
+
+diff --git a/ChageBOX_Lib/bin/uuu/vgb/test/TestCustomer.class b/ChageBOX_Lib/bin/uuu/vgb/test/TestCustomer.class
+index fd713d385c559b3b9273b8e74e64b3103f9cf77b..85b8cf0a1ccd6b70d895836341cf26d00645e8a6 100644
+GIT binary patch
+delta 842
+zcmZWnOHUI~7(I8OOlhxDhKDT*6l}3&z&?16AP;$2EQlf~is%SKDd{6=8;OYtTN90e
+zOpHren6Pr8CZo|rcf`0b@kg+5;a@O*mkOGgo7{W8bI<p>_xoP)&FT93>%%7i5v<FQ
+z7(CnCp6%f0xE)mt&f!Qn+R@q7-P5btQNvIcIWQeK0gntfL)E%|Uk??MX(JTRF6*gL
+zy<l+E;Ut5UU1g{X#9}dXKyrs&sOPYufuTPTKk!QFnM7!|kV|F~eg8A&pj6`z&fDQ-
+zDBs_DyZ>_c$IdGUTxjMv4IhJ?Hwx2w+Au4a+bb?wIL;tIa=Mr>GAl-op)@ceg0z}X
+zS$(99qg{B~Nideylc{oq5RnmPaQ#!#gM7hAb41Z$mP*ZKT^!x$G25ipG7Wt)&Y6pn
+zyQClI%?-)dKFHt*N29%3B&=x>QN}RGg~Kc}YuSt;$We|ljGJF1-=>C(9R2VKdXnQ3
+z#u;o0qYzsW%oNA8U}R!McY>SYxFR?waWi^8zmd%yXlFUDVU8Lm{;=VaKybtX4cA4E
+zfbd@6xGB8tq@u2QG9~_Rk>fU&%&ijj_+17F;XRIJs?legHlN$(Sh@Mr*0|{g%>@m}
+z&PTWw6h*17l=tM)_o#h`Q*l*kw9urwrY!hXC1^o?gR`oIP7A%NGGJk-XpdN!D5BUA
+ziXWlNN9d}B`J(Q|A8wO^?crE4=B-`WlsgprZ<Zp`N&T9Nl&BA25(@1c)u^OVtb&(N
+z3p@y;o_?|cLue$8m)@=kOK8R#%~K9OJcJ*Q=zI(n&(MY!G%bE7g{m#S09Ig-RgEWD
+NMFNc08rc$(zX8z`t~dYy
+
+literal 2001
+zcmaJ?S#uOs6#i}&rZe0?GD#o_35!6OVMr!B8H155fYF3Rg24n_Iy0R~53|Ico<MNH
+z1$R*tU##N6QmgXBgId+0LY0p``0ksJqUBHU#qzt;>1?1iHQo1~bI)?W@0`=W{Il{C
+zfHr*TLy<sTKA(>)BxWMEk+UP``54US>}=Ywd?*p9Na_oEB&BB(k+GSi5wiuhoiH<|
+z-6v2S3{47@3})koAH^t>D8)8`og-$(IGaz;7}j}xCS?c&MzS$IHK|*s+OG;r>^U<h
+zuxI2y6X>P$v~Feub_FkvtS2&ITV^KF8=CZ?Qed}dZ)9xKUW|C@`%!^14b=kv{<ijx
+z&aUp`Jy9jxC9xZ|0;M^_9*zst1Rv#FL%l%RgIhm7_-^U1ukR|u28l*x=%e9TJ#A>%
+zM>JgDN`FA&F{R&5{kWdXUCCN;B|ju_7)|s>`57Y<H!NN(I2fAL5aiwToNeigSG&49
+zTYF9>c;Qq_ESpw_M<v3_p+>_~N}-{d*J+DJqs^_|&8>y&L?l|hr~{^D&&Bn{GPI-9
+zhmKABO)TbYBQ4Q|ZgQ8+lgb+R=4LiBPDpJ6Yv}1-6}m?vipP1EgkgJLiFGjKTG(dV
+zh!j{I(rtqlC(!4^69QEQnl?L>coHWG+q{aABAuHMcgu=wY8c?<TBB|4?a|H-m#ZO(
+zQyv22bJ+|FtpaBxp29F;VQvMXK(&`xp;A{1L}m4i3SO(MMkUTFt5RAG7kC+$cveY#
+zlqf#csR@bmN~Z3;k;6%e3wWL!Qtolc`X5v=rd5n4WqnEF1uwG#VSc;>-G`SwU^e3>
+zF@u<Zq|YIJacuU2VO-t{@|vPo16v6yOhRG~CKHd%8T#enp)H7d{W0x>a<{c{2J&W#
+zHRwkgSszHph8}lKCFb!8-7n~=yfHQ_(6q5dJi;FC8b6ZAsVPvaA<x$M<L<YAezT&a
+zS0t`tks^J5o*f|2ywRhV@IxL~Q)PW6@v6jY1#IoCdtSpE<m2~yH@z??@TOwoE!ADq
+zs-E5vC^AWP67Q<`?+G+e@jp>2@PWjKDvF<+^vC0tk>iXi(X9kuRgV}#?4($py1KP7
+zwq*=)h?UN$CQ)N>D-~1<o&RYDoXF;_m~q-v1G94D9BxroH~@y?+y;uc;-KZz$6bVP
+zmIX?WE<^jip!V~r)Zl^bd`kBK-{stuVFz|nLSwOl68<1|+(*UKG7}63svOjW19cAe
+zgadmW><?FrIye{(9B~i|92*TEbI|ew+QJTwJLnAu`W+0q`_m4dc2^^7tFg7!xwX}E
+z4yN357uRIRe@40M^2H^T2I9&!_jEMd$Fq%Jq2WG~Q%ZCXsbyFJ+rff^YfGrxqIlg^
+zxUL%=T&KM{5_p?to>K=mXuKYt@!XW&r)(X?B<hKn9~yDoLHw$TU_Dp+iC_~d5kdeh
+zs6r3FD1E5qSgON0p16cPm_-BIs1et&7dNmExA?wI%RBr?{ECD44TtbI4vS)b8p?5`
+qz|>Kf4Sa-;8CMhA@Cj~`s}LUGQ+!71@4%v`&shorU+_#3ZvP831?BSq
+
+diff --git a/ChageBOX_Lib/bin/uuu/vgb/test/TestCustomerAge.class b/ChageBOX_Lib/bin/uuu/vgb/test/TestCustomerAge.class
+index 8bdd3f3afd78c5764168a7493dfbea5fdcd42d5b..dbe18061c9b9ddfd50099d9dca0da24ddcc1897f 100644
+GIT binary patch
+delta 766
+zcmX|<+fUPA7{;HjJ5fFinF*VTH!5-(a|aNpfC$K8I&nHrhzga~t;jZAD~P9gi1Au$
+zA~!~F2u80orVusYl_vflD1U@8zTcWGz3BTs-}Ah`_e;B4_n}Vu_3z6DfH<Cfl-7lD
+zKOzF8xGc+&SXU$_OQ=VbA%>8ET0=93^pcrVm8BXa(CI^mfciOQL5a>Qg={plWSCl>
+z;UKy!(Y4px!yx036?V1l>BC_k`UUK)xb<Q*UD69?#w=+H1qN`$T5vT+hKL=L<B5da
+z+0j#BA7vQfY(KHnxne=%3ym?1BWe9~HSXxcaUKu(a6&-Pnh}FhKTZk|b+unY3a1!6
+z2=P#c;S7=jJXy_5s{HI6!+Bh=2E^WS3Ktos__5zC(pGvQ%QKf5u5i&unF%FdfzL1~
+zT&pE5tr*5)u|(7AG0UJr6Hr6?m{w4=5^d4aIxL|NS-xWvcj*js6%4sX@`^q$VIBq1
+zhrIPy42ebDu!8PznzDhd&E@TP%iG`9x1O&2dHLq|s}(-LWVpo#NHkzjRZE&-aCwp8
+zHkJf<xtygn2%Y5UyBvMbdg1<FGX^(Y^sP6oDNl1b&~D?vC&a@xx^47^1A{h(oqp8D
+zF{-{IH5r&#Lz*n7ZJf0+=^Rjhsaj1}tE)DyIRkQ4t@{V+9K!Wgcmg+x<XA!+>Xb&+
+zy<p>xwcFb=+kkci(S==fgMAo9Bc`z*I+|dh8TZkGXK2N9wBa?q-y)3nl=w{l=>|Gc
+aOP6eLu1ekq)cLW7G9E&p=MnWTJpK=yZLiG$
+
+delta 776
+zcmX|9OHUI~7(Fwz9hhDcEQw+?#7BjeQd<flwIY`HP{b;V;(K7mcCZhf8NsSpG;!m0
+zNWhgQhG1e`=wcvfd@WqK&|iV_Cp6yMYBP)ZzVn^$oO9>StJ>9C@!Ow`4*=Tm=#99}
+z#YNO1NN^A#4sJs=do|rmD{_H@%O^>af1-v`+XX~8)Xm7VawsF`QlasJVX9ez4ji&X
+zexK_wK^LM{gm2j!L$`pV9O_GKEgwqiTFx9dbycPd$IxTV^WI>bgBXssMIzCT_O2)k
+z(MQma1`gFUL^7SvsSF$>7{ajio%gz97-8!T0!FRh{O;fwhbm3!7Lh=bz=;ONKTR->
+zVGhoeYDx;5oh6vSIcu;gR!m@$-~t<0n|T^Y%ca=PC4$Qg6zI;FoGtlYCAh{gH^q{&
+zVa(-qs#b?7f@vrmYA8OW<`h+@DSZAu5iwk6@tPPbO`w%*C~F`qYZ(zYkZlx@`Tto=
+zEvtq`^V4#sUp7^O9P(D9Bapns!L#{sdF$o!*8BC%$1A@UpZ#1~VVVYk$uvc(8CMit
+zH4FyN63pQay(|W&)KVIWrMb(}+_RoKKGlrC0iIs@7i-GdT-+x7a0oV9-y$5a(P`sI
+zz;oP2Z@C|^A<^m`5|f@2YdA?Mr)-?DalSmD{l!XkrBcZ@)UrUTf^~jHZP{UF6;97h
+z>O?8K{+X89dWC)4M#0+S@=ezxgdK=tCwj0S61<qg0c6mGSu|q-K0JXRi)g`f`hI}`
+kUZWLj2;(#T9o_Vt+smiLeazFY8XI_kA~^ai(4NP`zwdIj@Bjb+
+
+diff --git a/ChageBOX_Lib/src/uuu/vgb/entity/Customer.java b/ChageBOX_Lib/src/uuu/vgb/entity/Customer.java
+index 2ae2978..f89a4be 100644
+--- a/ChageBOX_Lib/src/uuu/vgb/entity/Customer.java
++++ b/ChageBOX_Lib/src/uuu/vgb/entity/Customer.java
+@@ -1,7 +1,7 @@
+ package uuu.vgb.entity;
+ 
+ import java.time.LocalDate;
+-import java.util.Scanner;
++
+ 
+ public class Customer {
+ 	private String id; //required, PKey, ROC Id(natural key)
+@@ -27,18 +27,20 @@ public class Customer {
+ 	public LocalDate getBirthday() {
+ 		return birthday;
+ 		}
+-	private void setBirthday(LocalDate birthday) {
++	public void setBirthday(LocalDate birthday) {
+ 		if(birthday.isBefore(LocalDate.now())) {this.birthday=birthday;
+ 		}else{System.out.println("客戶生日不得大於今天"+birthday);}
+ 	}
+ 	
+ 	public void setBirthday(int year,int month,int day) {
+ 		LocalDate bDate=LocalDate.of(year,month,day);
+-		this.birthday=bDate;
++		if(bDate.isBefore(LocalDate.now())) {this.birthday=bDate;}
++		else{System.out.println("客戶生日不得大於今天");}
+ 	}
+ 	public void setBirthday(String dateString) {
+ 		LocalDate bDate=LocalDate.parse(dateString);
+-	if(bDate.isBefore(LocalDate.now())) {this.birthday=bDate;}else{System.out.println("客戶生日不得大於今天"+dateString);}
++	if(bDate.isBefore(LocalDate.now())) {this.birthday=bDate;}
++	else{System.out.println("客戶生日不得大於今天"+dateString);}
+ 	}
+ 	
+ 	
+@@ -58,6 +60,9 @@ public class Customer {
+ 		//String id =scanner.next();
+ 		//if id = regular.exoression("");
+ 		int ans = 0;
++		String sao ="[A-Z][1-2][0-9]{8}$"; 
++		int ans01 = ans % 10;
++		if(id!=null&&ans01 == 0&& id.matches(sao)) {
+ 		char Char01 = id.charAt(0);// 將第一個字母提出來
+ 		
+ 		char Char10 = id.charAt(9);
+@@ -100,11 +105,11 @@ public class Customer {
+ 			sum=sum+(id.charAt(i)-'0')*(9-i);}
+ 		
+ 		ans = sum+ (Char10- 48) * 1;
+-		String sao ="[A-Z][1-2][0-9]{8}$"; 
+ 		
+-		int ans01 = ans % 10;
+ 		
+-		if(id!=null&&ans01 == 0&& id.matches(sao)) {
++		
++		
++		
+ 			//System.out.println(id + "正確");
+ 			return true ;
+ 		}
+@@ -130,20 +135,28 @@ public class Customer {
+ 		return password;
+ 	}
+ 	public void setPassword(String password) {
+-		this.password = password;
++		if(password!=null&&password.length()>=6&&password.length()<20) {
++			this.password = password;
++		}else{System.out.println("需要輸入6-20的密碼");
++			}
+ 	}
+ 	public char getGender() {
++		
+ 		return gender;
+ 	}
+ 	public void setGender(char gender) {
++		if(gender=='M'||gender=='F') {
+ 		this.gender = gender;
+-	}
++	}else {
++			System.out.println("性別不正確('M'-男,'F'-女)"+gender);
++		}
++			}
+ 	public String getEmail() {
+ 		
+ 		return email;
+ 	}
+ 	public void setEmail(String email) {
+-		if(email!=null&&email.matches("/^.*@gmail\\.com$/")) {;
++		if(email!=null&&email.matches("^.*@gmail\\.com$")) {
+ 		this.email = email;
+ 	}else{System.out.println("gmail輸入錯誤");}}
+ 	public String getAddress() {
+@@ -156,8 +169,11 @@ public class Customer {
+ 		return phone;
+ 	}
+ 	public void setPhone(String phone) {
++		if(phone!=null&&password.length()>=6) {
+ 		this.phone = phone;
+-	}
++	}else {System.out.println("請輸入正確的電話號碼"+phone);
++			}
++				}
+ 	public boolean isMarried() {
+ 		return married;
+ 	}
+@@ -165,11 +181,15 @@ public class Customer {
+ 		this.married = married;
+ 	}
+ 	
+-
+-	
+-
++	public Customer() {}
++	public Customer(String id,String pwd,LocalDate birthday) {
++		this.setId(id);
++		this.setPassword(pwd);
++		this.setBirthday(birthday);
++	}
+ 
+ 
++	
+ 
+ 
+ 
+diff --git a/ChageBOX_Lib/src/uuu/vgb/entity/Outlet.java b/ChageBOX_Lib/src/uuu/vgb/entity/Outlet.java
+new file mode 100644
+index 0000000..e45a39a
+--- /dev/null
++++ b/ChageBOX_Lib/src/uuu/vgb/entity/Outlet.java
+@@ -0,0 +1,33 @@
++package uuu.vgb.entity;
++
++public class Outlet extends Product {
++	private int discount=20;
++
++	public int getDiscount() {
++		return discount;
++	}
++
++	public void setDiscount(int discount) {
++		if(discount>0&&discount<100) {this.discount = discount;}
++		else {System.err.println("則扣必須在1~99%之間");}
++	}
++	
++	
++	public String getDiscount2() {
++		int discount =100-this.discount;
++	if(discount%10==0) {discount/=10;}
++	return discount+"折";
++		}
++			
++	public double getUnitPrice(){
++		double price=unitPrice*(100D-discount)/100;
++		return price;
++	}
++	
++	public double ListUnitPrice(){
++		double price=unitPrice;
++		return price;}
++	
++	
++	
++}
+diff --git a/ChageBOX_Lib/src/uuu/vgb/entity/Product.java b/ChageBOX_Lib/src/uuu/vgb/entity/Product.java
+index c79be5f..76c5d6b 100644
+--- a/ChageBOX_Lib/src/uuu/vgb/entity/Product.java
++++ b/ChageBOX_Lib/src/uuu/vgb/entity/Product.java
+@@ -3,7 +3,7 @@ package uuu.vgb.entity;
+ public class Product {
+ 	private int id;//Pkey,AUTO_INCREMENT(surrogste key)
+ 	private String name="";//可重複品項名稱,required
+-	private double unitPrice;//單價,required
++	protected double unitPrice;//單價,required
+ 	private int stock;//庫存
+ 	private String description="";//描述
+ 	private String photoUrl;//照片
+@@ -11,18 +11,37 @@ public class Product {
+ 	private String host="";//主機,required
+ 	private boolean unsold;//未出售(是否出售)
+ 	//public int status = 1; //0:新產品, 1:已上架, -1:已停售，這個屬性目前用不到
++	public Product(){}
++	
++	public Product(int id, String name, double unitPrice) {
++	super();
++	this.id = id;
++	this.name = name;
++	this.unitPrice = unitPrice;
++}
++	
++	
++	
+ 	public int getId() {
+ 		return id;
++
+ 	}
++	
+ 	public void setId(int id) {
+ 		this.id = id;
+ 	}
+ 	public String getName() {
+ 		return name;
+ 	}
++	
+ 	public void setName(String name) {
++		//if(name!=null&&name.length()>0) 
++		//{
+ 		this.name = name;
+-	}
++	//}else{System.out.println("需要產品名稱");
++	//	}
++			}
++	
+ 	public double getUnitPrice() {
+ 		return unitPrice;
+ 	}
+diff --git a/ChageBOX_Lib/src/uuu/vgb/test/TestCustomer.java b/ChageBOX_Lib/src/uuu/vgb/test/TestCustomer.java
+index dc2d30b..b9d83df 100644
+--- a/ChageBOX_Lib/src/uuu/vgb/test/TestCustomer.java
++++ b/ChageBOX_Lib/src/uuu/vgb/test/TestCustomer.java
+@@ -2,25 +2,31 @@ package uuu.vgb.test;
+ 
+ 
+ 
++import java.time.LocalDate;
++
+ import uuu.vgb.entity.Customer;
+ 
+ public class TestCustomer {
+ 
+ 	public static void main(String[] args) {
+-		Customer cus = new Customer();
+-		cus.setId("A123456789");
++		Customer cus = new Customer("A1023456789","123456",LocalDate.of(1990,4,1));
++		
++		
++		//Customer cus = new Customer();
++		//cus.setId("A123456789");
+ 		cus.setName("吳大頭");
+-		cus.setPassword("123456");
++		//cus.setPassword("123456");
+ 		cus.setGender('M');
+ 		cus.setEmail("astrayx56408@gmail.com");
+-		//cus.setbirthday=LocalDate.of(1990,4,1);
+-		String bDate= "1999-06-09";
+-		cus.setBirthday(bDate);
++		//cus.setBirthday=LocalDate.of(1990,4,1);
++		//cus.setBirthday(LocalDate.parse("19900404"));
++		//String bDate= "2999-06-09";
++		//cus.setBirthday("2999-06-09");
+ 		System.out.println(cus.getBirthday());
+ 		
+ 		//cus.birthday=LocalDate.now();
+ 		//cus.birthday=LocalDate.parse("1990-04-01");
+-		cus.setPhone("0912294389");
++		cus.setPhone("0228910991");
+ 		System.out.println(cus.getPhone());
+ 		System.out.println(cus.getId());
+ 		System.out.println(cus.getName());
+@@ -29,11 +35,11 @@ public class TestCustomer {
+ 		System.out.println(cus.getEmail());
+ 		System.out.println(cus.getBirthday()!=null?
+ 				cus.getBirthday().getDayOfWeek():"");
+-		boolean a =(cus.cheakID(cus.getId()));
++		//boolean a =(cus.cheakID(cus.getId()));
++		
++		//System.out.println(a?cus.getId()+"正確":cus.getId()+"不正確");//boolean?true:false
++		//System.out.println(a); 
+ 		
+-		System.out.println(a?cus.getId()+"正確":cus.getId()+"不正確");//boolean?true:false
+-		System.out.println(a); 
+-		System.out.println("id"+cus.cheakID(cus.getId()));
+ 		System.out.println(cus.getBirthday());
+ 		System.out.println(cus.getAddress());
+ 	}
+diff --git a/ChageBOX_Lib/src/uuu/vgb/test/TestCustomerAge.java b/ChageBOX_Lib/src/uuu/vgb/test/TestCustomerAge.java
+index 66c36b5..2fbb29e 100644
+--- a/ChageBOX_Lib/src/uuu/vgb/test/TestCustomerAge.java
++++ b/ChageBOX_Lib/src/uuu/vgb/test/TestCustomerAge.java
+@@ -16,10 +16,10 @@ public class TestCustomerAge {
+ 		//cus.birthday=LocalDate.of(1990,4,1);
+ 		//cus.birthday=LocalDate.now();
+ 		//cus.birthday=LocalDate.parse("1999-04-01");
+-		cus.setBirthday(1999,1,4);
+-		
+-		//String bDate="1999-06-09";
+-		//cus.setBirthday(bDate);
++		//cus.setBirthday(1999,1,4);
++		//System.out.println(cus.getBirthday());
++		//String bDate="2999-06-09";
++		cus.setBirthday("1999-06-09");
+ 		System.out.println(cus.getBirthday());
+ 		
+ 		cus.setPhone("0912294389");
+diff --git a/ChageBOX_Lib/src/uuu/vgb/test/TestProduct2.java b/ChageBOX_Lib/src/uuu/vgb/test/TestProduct2.java
+new file mode 100644
+index 0000000..ea3e947
+--- /dev/null
++++ b/ChageBOX_Lib/src/uuu/vgb/test/TestProduct2.java
+@@ -0,0 +1,36 @@
++package uuu.vgb.test;
++
++
++import uuu.vgb.entity.Product;
++
++public class TestProduct2 {
++
++	public static void main(String[] args) {
++		//System.out.println(args.length);
++		
++		
++		
++		
++		Product p= new Product(2,"動物森友會",1300);		
++		//Product p= new Product();
++		//p.setId(1);
++		//p.setName("動物森友會");
++		//p.setUnitPrice(1300);
++		p.setOrigin("台北");
++		p.setStock(2);
++		
++		System.out.println(p.getName());
++		System.out.println(p.getId());
++		System.out.println(p.getUnitPrice());
++		System.out.println(p.getStock());
++		//System.out.println(p.getDescription());
++		//System.out.println(p.getPhotoUrl());
++		System.out.println(p.getOrigin());
++		//System.out.println(p.getHost());
++		//System.out.println(p.isUnsold());
++	
++	
++	}
++	
++
++}
+diff --git a/ChageBOX_Lib/src/uuu/vgb/test/TestVIP.java b/ChageBOX_Lib/src/uuu/vgb/test/TestVIP.java
+new file mode 100644
+index 0000000..1cf1f62
+--- /dev/null
++++ b/ChageBOX_Lib/src/uuu/vgb/test/TestVIP.java
+@@ -0,0 +1,24 @@
++package uuu.vgb.test;
++
++import uuu.vgb.entity.Outlet;
++
++class TestVIP {
++
++	public static void main(String[] args) {
++		VIP vip=new VIP();
++		vip.setId("A0123456789");
++		vip.setName("張大頭");
++		vip.setDiscount(0);
++		
++		System.out.println(vip.getDiscount2());
++		System.out.println(vip.getName());
++		System.out.println("id:"+vip.getId());
++		Outlet out= new Outlet();
++		 out.setId(1);
++		 System.out.println(out.getId());
++		}
++		
++		
++	}
++
++
+diff --git a/ChageBOX_Lib/src/uuu/vgb/test/Testout.java b/ChageBOX_Lib/src/uuu/vgb/test/Testout.java
+new file mode 100644
+index 0000000..40ce146
+--- /dev/null
++++ b/ChageBOX_Lib/src/uuu/vgb/test/Testout.java
+@@ -0,0 +1,20 @@
++package uuu.vgb.test;
++import  uuu.vgb.entity.Outlet;
++class Testout {
++
++	public static void main(String[] args) {
++	 Outlet out= new Outlet();
++	 out.setId(1);
++	 out.setDiscount(200);
++	 out.setUnitPrice(500);
++	 
++	 System.out.println("打折後"+out.getUnitPrice());
++	 System.out.println(out.getDiscount());
++	 System.out.println(out.getDiscount2());
++	 System.out.println(out.getId());
++	 System.out.println("原價"+out.ListUnitPrice());
++	
++	
++	}
++
++}
+diff --git a/ChageBOX_Lib/src/uuu/vgb/test/VIP.java b/ChageBOX_Lib/src/uuu/vgb/test/VIP.java
+new file mode 100644
+index 0000000..ee89b0a
+--- /dev/null
++++ b/ChageBOX_Lib/src/uuu/vgb/test/VIP.java
+@@ -0,0 +1,20 @@
++package uuu.vgb.test;
++
++import uuu.vgb.entity.Customer;
++
++class VIP extends Customer {
++	private int discount = 5;//5%off
++	public int getDiscount(){return discount;}
++	public void setDiscount(int discount){
++		if(discount>0&&discount<100) {this.discount=discount;}
++		else{System.err.println("則扣必須在1~99%之間");}
++		}
++
++	public String getDiscount2() {
++		int discount =100-this.discount;
++	if(discount%10==0) {discount/=10;}
++	return discount+"折";
++		}
++			}
++	
++	
+\ No newline at end of file
+-- 
+2.26.2.windows.1
+
