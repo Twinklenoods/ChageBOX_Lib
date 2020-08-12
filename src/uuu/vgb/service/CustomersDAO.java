@@ -52,7 +52,7 @@ class CustomersDAO {
 
 
 	private static final String SELECT_CUSTOMER_BY_ID="SELECT  id, name, password, gender, email, address, birthday,phone,"
-			+ "married,discount, class_name FROM vgb.customers"
+			+ " FROM vgb.customers"
 			+" WHERE id=?";
 	 Customer selectCustomersById(String id) throws VGBException {
 		Customer c = null;
