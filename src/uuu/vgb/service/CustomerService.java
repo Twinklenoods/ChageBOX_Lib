@@ -32,5 +32,11 @@ public class CustomerService {
 			throw new VGBException("帳號或密碼錯誤");
 		
 	}
+	/*追加的update*/
+	public void update(Customer c) throws VGBException{
+		if(c==null) {
+			throw new IllegalArgumentException("客戶c不得為null");
+		}
+		dao.update(c);	
 	}
-
+}
