@@ -4,18 +4,19 @@ import java.time.LocalDate;
 
 public class Product {
 	private int id;// Pkey,AUTO_INCREMENT(surrogste key)
-	private String name;// 可重複品項名稱,required
+	private String name;// 可重複品項名稱,required,遊戲名稱
 	private String owner;// 訂單建立者
 	private String customer;// 交易對象
-	private double unitPrice;// 單價,required
-	private String description = "";// 商品描述
+	private double unitPrice;// 單價,required//BuyPrice
+	private String description = "";// 商品描述//comment1
 	private String wantChange = "";// 想換的東西
-	private String photoUrl;// 照片
+	private String photoUrl;// 照片//img
 	private String origin = "";// 面交地點,required
 	private String host;// 主機,P-PS4,S-Switch,required
-	private boolean buy;// private boolean married;參考
-	private boolean change;// private boolean married;
-	private LocalDate createTime;
+	private String buy;// private boolean married;參考
+	private String change;// private boolean married;
+	
+	private LocalDate createTime;//建立時間
 
 	public Product() {
 	}
@@ -112,19 +113,11 @@ public class Product {
 		this.host = host;
 	}
 
-	public boolean isBuy() {
-		return buy;
-	}
-
-	public void setBuy(boolean buy) {
+	public void setBuy(String buy) {
 		this.buy = buy;
 	}
 
-	public boolean isChange() {
-		return change;
-	}
-
-	public void setChange(boolean change) {
+	public void setChange(String change) {
 		this.change = change;
 	}
 

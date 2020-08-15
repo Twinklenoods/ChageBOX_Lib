@@ -12,7 +12,7 @@ public class TestCustomer {
 	public static void main(String[] args) {
 		Customer cus = new Customer("A123456789","123456",LocalDate.parse("2000-01-04"));
 		
-		cus.setBloodType(BloodType.O);
+		//cus.setBloodType(BloodType.O);
 		
 		//Customer cus = new Customer();
 		//cus.setId("A123456789");
@@ -24,10 +24,10 @@ public class TestCustomer {
 		//cus.setBirthday(LocalDate.parse("19900404"));
 		//String bDate= "2999-06-09";
 		//cus.setBirthday("2999-06-09");
-		System.err.println(cus.getBloodType());
+		//System.err.println(cus.getBloodType());
 		System.out.println(cus.getBirthday());
-		System.err.println(cus.getBloodType().name());
-		System.err.println(cus.getBloodType().ordinal());
+		//System.err.println(cus.getBloodType().name());
+		//System.err.println(cus.getBloodType().ordinal());
 		
 		//cus.birthday=LocalDate.now();
 		//cus.birthday=LocalDate.parse("1990-04-01");
