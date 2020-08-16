@@ -1,6 +1,7 @@
 package uuu.vgb.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Product {
 	private int id;// Pkey,AUTO_INCREMENT(surrogste key)
@@ -16,7 +17,8 @@ public class Product {
 	private String buy;// private boolean married;參考
 	private String change;// private boolean married;
 	
-	private LocalDate createTime;//建立時間
+	/*private LocalDateTime createTime;//建立時間*/
+	
 
 	public Product() {
 	}
@@ -33,8 +35,8 @@ public class Product {
 
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int string) {
+		this.id = string;
 	}
 
 	public String getName() {
@@ -112,22 +114,28 @@ public class Product {
 	public void setHost(String host) {
 		this.host = host;
 	}
-
+	public String getBuy() {
+		return buy;
+		
+	}
 	public void setBuy(String buy) {
 		this.buy = buy;
 	}
-
+	public String getChange() {
+		return change;
+		
+	}
 	public void setChange(String change) {
 		this.change = change;
 	}
 
-	public LocalDate getCreateTime() {
+	/*public LocalDateTime getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(LocalDate createTime) {
-		this.createTime = createTime;
-	}
+	public void setCreateTime(LocalDateTime createTime) {
+		this.createTime = LocalDateTime.now();
+	}*/
 
 	@Override
 	public int hashCode() {
@@ -154,7 +162,7 @@ public class Product {
 		return "Product [訂單編號=" + id + ", 遊戲名稱=" + name + ", 擁有者=" + owner + ", 買家=" + customer + ", 直購價格="
 				+ unitPrice + ", 商品描述=" + description + ", wantChange=" + wantChange + ", 照片=" + photoUrl
 				+ ", origin=" + origin + ", host=" + host + ", buy=" + buy + ", change=" + change + ", createTime="
-				+ createTime + "]";
+				/*+ createTime */+ "]";
 	}
 
 }
