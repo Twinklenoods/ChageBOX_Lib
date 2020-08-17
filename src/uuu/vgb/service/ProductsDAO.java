@@ -35,7 +35,7 @@ class ProductsDAO {
 			pstmt.setString(10,c.getHost());
 			pstmt.setString(11,c.getBuy());
 			pstmt.setString(12,c.getChange());
-			/*pstmt.setLong(13,LocalDateTime.now());*/
+			
 			
 			
 			 pstmt.executeUpdate();//4.執行指令
@@ -45,7 +45,7 @@ class ProductsDAO {
 			if(e.getMessage().indexOf("PRIMSRY")>=0) {
 				key="id";
 			}
-			throw new VGBException("帳號已重複-"+key+"重複註冊",e);
+			throw new VGBException("商品已重複-"+key+"重複註冊",e);
 		} catch (SQLException e) {
 				throw new VGBException("客戶新增失敗",e);
 		} 

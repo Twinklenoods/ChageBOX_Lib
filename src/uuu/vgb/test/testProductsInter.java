@@ -12,19 +12,19 @@ public class testProductsInter {
 		try {
 			Product c = new Product();	
 				
-				c.setName("vu1");
-				c.setCustomer("西往母");
+				c.setName("寶可夢'劍'");
 				
-				c.setOwner("吳大頭");
-				c.setUnitPrice(2000);
+				
+				c.setOwner("A123123");
+				c.setUnitPrice(1000);
 				c.setDescription("這是敘述");
 				c.setWantChange("想交換的物品");
-			
+				
 				
 				c.setHost("ps4");
-				//c.setChange("");
+				c.setChange("");
 				c.setBuy("yes");
-				c.setOwner("地點");
+				c.setOrigin("台南市");
 				c.setPhotoUrl("照片");
 				
 				service.register(c);;
