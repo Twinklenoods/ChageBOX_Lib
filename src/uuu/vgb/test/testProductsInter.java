@@ -22,7 +22,7 @@ public class testProductsInter {
 				
 				
 				c.setHost("ps4");
-				c.setChange("");
+				c.setChangebox("");
 				c.setBuy("yes");
 				c.setOrigin("台南市");
 				c.setPhotoUrl("照片");

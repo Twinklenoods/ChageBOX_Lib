@@ -13,8 +13,8 @@ import uuu.vgb.entity.VGBException;
 class ProductsDAO {
 	
 	//, createTime
-	private static final String INSERT_PRODUCT= "   INSERT INTO `products` (`id`, `name`, `owner`, `customer`, `unitprice`, `description`, `wantChange`,`photoUrl`, `origin`, `host`, `buy`, `change`) \n" 
-			+ "    VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+	private static final String INSERT_PRODUCT= "   INSERT INTO `products` (`id`, `name`, `owner`, `customer`, `unitprice`, `description`, `wantChange`,`photoUrl`, `origin`, `host`, `buy`, `changebox`, `ownerN`) \n" 
+			+ "    VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			
 	public void insert(Product c) throws VGBException{
 		
@@ -34,8 +34,8 @@ class ProductsDAO {
 			pstmt.setString(9,c.getOrigin());
 			pstmt.setString(10,c.getHost());
 			pstmt.setString(11,c.getBuy());
-			pstmt.setString(12,c.getChange());
-			
+			pstmt.setString(12,c.getChangebox());
+			pstmt.setString(13,c.getOwnerN());
 			
 			
 			 pstmt.executeUpdate();//4.執行指令
@@ -56,7 +56,7 @@ class ProductsDAO {
 
 	private static final String SELECT_PRODUCT_BY_ID=
 			"id, name, owner, customer, unitprice, description, wantChange, photoUrl,\"\n" + 
-			"			+ \"origin, host, buy, change, createTime FROM products" //);
+			"			+ \"origin, host, buy, changebox, createTime FROM products" //);
 					+ " WHERE id=?";
 			
 	Product selectProductsById(String id) throws VGBException {
@@ -79,7 +79,17 @@ class ProductsDAO {
 						c=new Product();
 						c.setName(rs.getString("name"));
 						c.setOwner(rs.getString("owner"));
-						c.setCustomer(rs.getString("owner"));
+						c.setCustomer(rs.getString("customer"));
+						c.setId(rs.getInt("id"));
+						c.setUnitPrice(rs.getDouble("UnitPrice"));
+						c.setDescription(rs.getString("Description"));			
+						c.setWantChange(rs.getString("WantChange"));
+						c.setPhotoUrl(rs.getString("PhotoUrl"));
+						c.setOrigin(rs.getString("Origin"));
+						c.setHost(rs.getString("Host"));
+						c.setBuy(rs.getString("Buy"));
+						c.setChangebox(rs.getString("Changebox"));
+						
 						
 						
 						

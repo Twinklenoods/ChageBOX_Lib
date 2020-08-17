@@ -15,9 +15,11 @@ public class Product {
 	private String origin = "";// 面交地點,required
 	private String host;// 主機,P-PS4,S-Switch,required
 	private String buy;// private boolean married;參考
-	private String change;// private boolean married;
-	
+	private String changebox;// private boolean married;
+	private String ownerN;// 訂單建立者name
 	/*private LocalDateTime createTime;//建立時間*/
+	
+
 	
 
 	public Product() {
@@ -91,6 +93,13 @@ public class Product {
 		this.owner = owner;
 	}
 
+	public String getOwnerN() {
+		return ownerN;
+	}
+
+	public void setOwnerN(String ownerN) {
+		this.ownerN = ownerN;
+	}
 	public String getCustomer() {
 		return customer;
 	}
@@ -121,12 +130,12 @@ public class Product {
 	public void setBuy(String buy) {
 		this.buy = buy;
 	}
-	public String getChange() {
-		return change;
+	public String getChangebox() {
+		return changebox;
 		
 	}
-	public void setChange(String change) {
-		this.change = change;
+	public void setChangebox(String change) {
+		this.changebox = change;
 	}
 
 	/*public LocalDateTime getCreateTime() {
@@ -159,10 +168,12 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "Product [訂單編號=" + id + ", 遊戲名稱=" + name + ", 擁有者=" + owner + ", 買家=" + customer + ", 直購價格="
+		return "Product [訂單編號=" + id + ", 遊戲名稱=" + name + ", 擁有者=" + owner +",擁有者=" + ownerN+ ", 買家=" + customer + ", 直購價格="
 				+ unitPrice + ", 商品描述=" + description + ", wantChange=" + wantChange + ", 照片=" + photoUrl
-				+ ", origin=" + origin + ", host=" + host + ", buy=" + buy + ", change=" + change + ", createTime="
-				/*+ createTime */+ "]";
+				+ ", origin=" + origin + ", host=" + host + ", buy=" + buy + ", change=" + changebox 
+				+ "]";
 	}
+
+	
 
 }
