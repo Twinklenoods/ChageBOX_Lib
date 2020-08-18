@@ -8,7 +8,7 @@ import uuu.vgb.entity.VGBException;
 
 class RDBConnection {
 	private final static String driver ="com.mysql.cj.jdbc.Driver";
-	private final static String url="jdbc:mysql://localhost:3306/vgb?serverTimezone=UTC";
+	private final static String url="jdbc:mysql://localhost:3306/vgb?serverTimezone=UTC";//characterEncoding=utf8
 	private final static String user="root";
 	private final static String password="6408";
 	

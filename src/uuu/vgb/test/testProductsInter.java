@@ -15,11 +15,11 @@ public class testProductsInter {
 				c.setName("寶可夢'劍'");
 				
 				
-				c.setOwner("A123123");
+				c.setOwner("A129067964");
 				c.setUnitPrice(1000);
 				c.setDescription("這是敘述");
 				c.setWantChange("想交換的物品");
-				
+				c.setOwnerN("va");
 				
 				c.setHost("ps4");
 				c.setChangebox("");

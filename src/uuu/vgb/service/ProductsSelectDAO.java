@@ -104,4 +104,112 @@ class ProductsSelectDAO {
 				return c;
 			}
 
+
+	private static final String SELECT_PRODUYS_BY_OWNER = "SELECT"
+			+ " id,name,description,origin,ownerN,changebox,owner,host,unitprice,createTime,buy,wantChange,photoUrl,customer" 
+			+ "	FROM products"
+					+ " WHERE owner LIKE ?";
+	public  List<Product> searchProductsByname(String owner) throws VGBException{
+		List<Product> list =new ArrayList<>();
+		try(
+		Connection connection =RDBConnection.getConnection();//1.2
+		PreparedStatement pstmt =connection.prepareStatement(SELECT_PRODUYS_BY_NAME);//3
+		){
+			//3.1傳入
+			pstmt.setString(1, '%'+owner+'%');
+			//4.執行指令
+			try(
+			ResultSet rs =pstmt.executeQuery();
+			){
+				while(rs.next()) {
+					Product p = new Product();
+					p.setName(rs.getString("name"));
+					p.setOwner(rs.getString("owner"));
+					p.setCustomer(rs.getString("customer"));
+					p.setId(rs.getInt("id"));
+					p.setUnitPrice(rs.getDouble("UnitPrice"));
+					p.setDescription(rs.getString("Description"));			
+					p.setWantChange(rs.getString("WantChange"));
+					p.setPhotoUrl(rs.getString("PhotoUrl"));
+					p.setOrigin(rs.getString("Origin"));
+					p.setHost(rs.getString("Host"));
+					p.setBuy(rs.getString("Buy"));
+					p.setChangebox(rs.getString("Changebox"));
+					p.setOwnerN(rs.getString("ownerN"));
+					
+					list.add(p);
+					
+					
+					
+					
+					
+				}
+				
+				
+				
+			}
+			
+		}catch(SQLException e) {
+			throw new VGBException("[用關鍵字查詢失敗]",e);
+			
+			
+		}
+		
+		return list;
+	}
+	private static final String SELECT_PRODUYS_BY_NAME="SELECT"
+			+ " id,name,description,origin,ownerN,changebox,owner,host,unitprice,createTime,buy,wantChange,photoUrl,customer" 
+			+ "	FROM products"
+			+ " WHERE name LIKE ?";
+			
+	public  List<Product> selectProductsByOwner(String search) throws VGBException{
+		List<Product> list =new ArrayList<>();
+		try(
+				Connection connection =RDBConnection.getConnection();//1.2
+				PreparedStatement pstmt =connection.prepareStatement(SELECT_PRODUYS_BY_OWNER);//3
+				){
+			//3.1傳入
+			pstmt.setString(1, '%'+search+'%');
+			//4.執行指令
+			try(
+					ResultSet rs =pstmt.executeQuery();
+			){
+				while(rs.next()) {
+					Product p = new Product();
+					p.setName(rs.getString("name"));
+					p.setOwner(rs.getString("owner"));
+					p.setCustomer(rs.getString("customer"));
+					p.setId(rs.getInt("id"));
+					p.setUnitPrice(rs.getDouble("UnitPrice"));
+					p.setDescription(rs.getString("Description"));			
+					p.setWantChange(rs.getString("WantChange"));
+					p.setPhotoUrl(rs.getString("PhotoUrl"));
+					p.setOrigin(rs.getString("Origin"));
+					p.setHost(rs.getString("Host"));
+					p.setBuy(rs.getString("Buy"));
+					p.setChangebox(rs.getString("Changebox"));
+					p.setOwnerN(rs.getString("ownerN"));
+					
+					list.add(p);
+					
+					
+					
+					
+					
+				}
+				
+				
+				
+			}
+			
+		}catch(SQLException e) {
+			throw new VGBException("[用關鍵字查詢失敗]",e);
+			
+			
+		}
+		
+		return list;
+	}
+
+	
 }
