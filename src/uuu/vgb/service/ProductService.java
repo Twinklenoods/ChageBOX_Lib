@@ -40,4 +40,11 @@ public class ProductService {
 		dao.update(p);	
 	
 }
+	public void updown(Product p) throws VGBException{
+		if(p==null) {
+			throw new IllegalArgumentException("訂單p不得為null");
+		}
+		dao.updown(p);	
+	
+}
 }

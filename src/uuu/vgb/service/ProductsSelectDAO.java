@@ -108,7 +108,7 @@ class ProductsSelectDAO {
 	private static final String SELECT_PRODUYS_BY_OWNER = "SELECT"
 			+ " id,name,description,origin,ownerN,changebox,owner,host,unitprice,createTime,buy,wantChange,photoUrl,customer" 
 			+ "	FROM products"
-					+ " WHERE owner LIKE ?";
+					+ " WHERE owner LIKE ? ";
 	public  List<Product> searchProductsByname(String owner) throws VGBException{
 		List<Product> list =new ArrayList<>();
 		try(
@@ -160,7 +160,7 @@ class ProductsSelectDAO {
 	private static final String SELECT_PRODUYS_BY_NAME="SELECT"
 			+ " id,name,description,origin,ownerN,changebox,owner,host,unitprice,createTime,buy,wantChange,photoUrl,customer" 
 			+ "	FROM products"
-			+ " WHERE name LIKE ?";
+			+ " WHERE name LIKE ? AND updown='yes'";
 			
 	public  List<Product> selectProductsByOwner(String search) throws VGBException{
 		List<Product> list =new ArrayList<>();
@@ -189,7 +189,7 @@ class ProductsSelectDAO {
 					p.setBuy(rs.getString("Buy"));
 					p.setChangebox(rs.getString("Changebox"));
 					p.setOwnerN(rs.getString("ownerN"));
-					
+					p.setCreateTime(rs.getString("createTime"));
 					list.add(p);
 					
 					
@@ -211,5 +211,59 @@ class ProductsSelectDAO {
 		return list;
 	}
 
+	private static final String SELECT_PRODUYS_BY_UPDOWN="SELECT"
+			+ " id,name,description,origin,ownerN,changebox,owner,host,unitprice,createTime,buy,wantChange,photoUrl,customer,updown" 
+			+ "	FROM products"
+			+ " WHERE updown LIKE ?";
+			
+	public  List<Product> selectProductsUpdown(String updown) throws VGBException{
+		List<Product> list =new ArrayList<>();
+		try(
+				Connection connection =RDBConnection.getConnection();//1.2
+				PreparedStatement pstmt =connection.prepareStatement(SELECT_PRODUYS_BY_UPDOWN);//3
+				){
+			//3.1傳入
+			pstmt.setString(1, '%'+updown+'%');
+			//4.執行指令
+			try(
+					ResultSet rs =pstmt.executeQuery();
+			){
+				while(rs.next()) {
+					Product p = new Product();
+					p.setName(rs.getString("name"));
+					p.setOwner(rs.getString("owner"));
+					p.setCustomer(rs.getString("customer"));
+					p.setId(rs.getInt("id"));
+					p.setUnitPrice(rs.getDouble("UnitPrice"));
+					p.setDescription(rs.getString("Description"));			
+					p.setWantChange(rs.getString("WantChange"));
+					p.setPhotoUrl(rs.getString("PhotoUrl"));
+					p.setOrigin(rs.getString("Origin"));
+					p.setHost(rs.getString("Host"));
+					p.setBuy(rs.getString("Buy"));
+					p.setChangebox(rs.getString("Changebox"));
+					p.setOwnerN(rs.getString("ownerN"));
+					p.setCreateTime(rs.getString("createTime"));
+					p.setUpdown(rs.getString("updown"));
+					list.add(p);
+					
+					
+					
+					
+					
+				}
+				
+				
+				
+			}
+			
+		}catch(SQLException e) {
+			throw new VGBException("[用關鍵字查詢失敗]",e);
+			
+			
+		}
+		
+		return list;
+	}
 	
 }

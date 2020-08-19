@@ -21,6 +21,8 @@ public class ProductSelectService {
 	public List<Product> searchProductsByName(String search)throws VGBException{
 		return dao.searchProductsByname(search);
 	}
-
+	public List<Product> getUpdown(String updown)throws VGBException{
+		return dao.selectProductsUpdown(updown);
+		}
 	
 }

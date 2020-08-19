@@ -142,4 +142,38 @@ class ProductsDAO {
 			
 		
 	}
+ 
+ private static final String UPDATE_UPDOWN=" UPDATE products"
+			+" SET updown=?, owner=?"
+			+" WHERE id=?";
+
+public void updown(Product p) throws VGBException{
+		
+		try (
+			Connection connection =RDBConnection.getConnection();//1.2.取得連線
+			PreparedStatement pstmt =connection.prepareStatement(UPDATE_UPDOWN);//3.準備指令
+		){
+			//3.1傳入?值
+			//3.1
+			pstmt.setString(1,p.getUpdown());
+			pstmt.setString(2,p.getOwner());
+			
+			pstmt.setInt(3,p.getId());
+			pstmt.executeUpdate();//4.執行指令
+			
+		} catch (SQLIntegrityConstraintViolationException e) {
+			String key="";
+			
+			throw new VGBException("商品修改已重複-"+key+"商品重複註冊",e);
+		} catch (SQLException e) {
+				throw new VGBException("客戶修改失敗",e);
+		} 
+			
+		
+	}
+ 
+ 
+ 
+ 
+ 
 		}

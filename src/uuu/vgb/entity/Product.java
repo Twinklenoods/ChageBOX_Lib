@@ -17,10 +17,18 @@ public class Product {
 	private String buy;// private boolean married;參考
 	private String changebox;// private boolean married;
 	private String ownerN;// 訂單建立者name
-	/*private LocalDateTime createTime;//建立時間*/
-	
+	private String createTime;//建立時間
+	private String updown;//建立時間
 
 	
+
+	public String getUpdown() {
+		return updown;
+	}
+
+	public void setUpdown(String updown) {
+		this.updown = updown;
+	}
 
 	public Product() {
 	}
@@ -138,13 +146,13 @@ public class Product {
 		this.changebox = change;
 	}
 
-	/*public LocalDateTime getCreateTime() {
+	public String getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(LocalDateTime createTime) {
-		this.createTime = LocalDateTime.now();
-	}*/
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
 
 	@Override
 	public int hashCode() {
