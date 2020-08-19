@@ -33,11 +33,11 @@ public class ProductService {
 			throw new VGBException("訂單編號,建立者輸入錯誤");
 		
 	}
-	/*追加的update
-	public void update(Customer c) throws VGBException{
-		if(c==null) {
-			throw new IllegalArgumentException("客戶c不得為null");
+	public void update(Product p) throws VGBException{
+		if(p==null) {
+			throw new IllegalArgumentException("訂單p不得為null");
 		}
-		dao.update(c);	
-	}*/
+		dao.update(p);	
+	
+}
 }

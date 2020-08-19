@@ -54,9 +54,9 @@ class ProductsDAO {
 	}
 
 
-	private static final String SELECT_PRODUCT_BY_ID=
-			"id, name, owner, customer, unitprice, description, wantChange, photoUrl,\"\n" + 
-			"			+ \"origin, host, buy, changebox, createTime FROM products" //);
+	private static final String SELECT_PRODUCT_BY_ID="SELECT"
+			+ " id,name,description,origin,ownerN,changebox,owner,host,unitprice,createTime,buy,wantChange,photoUrl,customer" 
+			+ "	FROM products"
 					+ " WHERE id=?";
 			
 	Product selectProductsById(String id) throws VGBException {
@@ -82,6 +82,7 @@ class ProductsDAO {
 						c.setCustomer(rs.getString("customer"));
 						c.setId(rs.getInt("id"));
 						c.setUnitPrice(rs.getDouble("UnitPrice"));
+						
 						c.setDescription(rs.getString("Description"));			
 						c.setWantChange(rs.getString("WantChange"));
 						c.setPhotoUrl(rs.getString("PhotoUrl"));
@@ -89,54 +90,56 @@ class ProductsDAO {
 						c.setHost(rs.getString("Host"));
 						c.setBuy(rs.getString("Buy"));
 						c.setChangebox(rs.getString("Changebox"));
-						
+						c.setOwnerN(rs.getString("ownerN"));
 						
 						
 						
 				}
 					}
 				} catch (SQLException e) {
-					throw new VGBException("用主鑑值查詢客戶失敗",e);		
+					throw new VGBException("用產品編號查詢失敗",e);		
 				}
 				 
 				return c;
 			}
-	/* private static final String UPDATE_CUSTOMER=" UPDATE customers"
-				+" SET name=?,password=?,gender=?, email=?, birthday=?, address=?, phone=?"
-				+" WHERE id=?";
-	 
-	 public void update(Customer c) throws VGBException{
+	private static final String UPDATE_PRODUCT=" UPDATE products"
+			+" SET name=?,unitprice=?,description=?, wantChange=?, photoUrl=?, origin=?, host=?, buy=?, changebox=?, owner=?"
+			+" WHERE id=?";
+ 
+ public void update(Product p) throws VGBException{
+		
+		try (
+			Connection connection =RDBConnection.getConnection();//1.2.取得連線
+			PreparedStatement pstmt =connection.prepareStatement(UPDATE_PRODUCT);//3.準備指令
+		){
+			//3.1傳入?值
+			//3.1
+			pstmt.setString(1,p.getName());
+			pstmt.setDouble(2,p.getUnitPrice());
+			pstmt.setString(3,p.getDescription());			
+			pstmt.setString(4,p.getWantChange());
 			
-			try (
-				Connection connection =RDBConnection.getConnection();//1.2.取得連線
-				PreparedStatement pstmt =connection.prepareStatement(UPDATE_CUSTOMER);//3.準備指令
-			){
-				//3.1傳入?值
-				//3.1
-				pstmt.setString(1,c.getName());
-				pstmt.setString(2,c.getPassword());
-				pstmt.setString(3,String.valueOf(c.getGender()));			
-				pstmt.setString(4,c.getEmail());
-				pstmt.setString(5,c.getBirthday().toString());			
-				pstmt.setString(6,c.getAddress());
-				pstmt.setString(7,c.getPhone());
-				pstmt.setString(8,c.getId());
-				//pstmt.setBoolean(9,c.isMarried());
-				
-				 pstmt.executeUpdate();//4.執行指令
-				
-			} catch (SQLIntegrityConstraintViolationException e) {
-				String key="";
-				if(e.getMessage().indexOf("email_UNIQUE")>=0) {
-					key="email";
-				}else if(e.getMessage().indexOf("PRIMSRY")>=0) {
-					key="id";
-				}
-				throw new VGBException("修改已重複-"+key+"重複註冊",e);
-			} catch (SQLException e) {
-					throw new VGBException("客戶修改失敗",e);
-			} 
+			pstmt.setString(5,p.getPhotoUrl());			
+			pstmt.setString(6,p.getOrigin());
+			pstmt.setString(7,p.getHost());
+			pstmt.setString(8,p.getBuy());
+			pstmt.setString(9,p.getChangebox());
+			pstmt.setString(10,p.getOwner());
+			pstmt.setInt(11,p.getId());
+			pstmt.executeUpdate();//4.執行指令
 			
+		} catch (SQLIntegrityConstraintViolationException e) {
+			String key="";
+			if(e.getMessage().indexOf("email_UNIQUE")>=0) {
+				key="email";
+			}else if(e.getMessage().indexOf("PRIMSRY")>=0) {
+				key="id";
+			}
+			throw new VGBException("商品修改已重複-"+key+"商品重複註冊",e);
+		} catch (SQLException e) {
+				throw new VGBException("客戶修改失敗",e);
+		} 
 			
-		}*/
+		
+	}
 		}
