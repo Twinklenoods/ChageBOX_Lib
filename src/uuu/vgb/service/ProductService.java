@@ -47,4 +47,11 @@ public class ProductService {
 		dao.updown(p);	
 	
 }
+	public void deleteProduct(Product p) throws VGBException{
+		if(p==null) {
+			throw new IllegalArgumentException("訂單p不得為null");
+		}
+		dao.deleteProduct(p);	
+	
+}
 }

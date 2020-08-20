@@ -171,6 +171,34 @@ public void updown(Product p) throws VGBException{
 			
 		
 	}
+
+private static final String DELETE_PROUCST=" DELETE FROM products"
+		
+		+" WHERE id=?";
+
+public void deleteProduct(Product p) throws VGBException{
+	
+	try (
+		Connection connection =RDBConnection.getConnection();//1.2.取得連線
+		PreparedStatement pstmt =connection.prepareStatement(DELETE_PROUCST);//3.準備指令
+	){
+		//3.1傳入?值
+		//3.1
+	
+		
+		pstmt.setInt(1,p.getId());
+		pstmt.executeUpdate();//4.執行指令
+		
+	} catch (SQLIntegrityConstraintViolationException e) {
+		String key="";
+		
+		throw new VGBException("商品已刪除-"+key+"已無商品可以刪除",e);
+	} catch (SQLException e) {
+			throw new VGBException("客戶刪除失敗",e);
+	} 
+		
+	
+}
  
  
  

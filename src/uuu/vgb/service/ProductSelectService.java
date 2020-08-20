@@ -25,4 +25,8 @@ public class ProductSelectService {
 		return dao.selectProductsUpdown(updown);
 		}
 	
+	public List<Product> getUpOwner(String owner)throws VGBException{
+		return dao.selectProductsUpOwner(owner);
+		}
+	
 }
