@@ -29,7 +29,7 @@ public class CustomerService {
 			
 			
 		}
-			throw new VGBException("帳號或密碼錯誤");
+			throw new VGBException("目前密碼輸入錯誤");
 		
 	}
 	/*追加的update*/
