@@ -269,7 +269,7 @@ class ProductsSelectDAO {
 	private static final String SELECT_PRODUYS_BY_UPOWNER = "SELECT"
 			+ " id,name,description,origin,ownerN,changebox,owner,host,unitprice,createTime,buy,wantChange,photoUrl,customer,updown" 
 			+ "	FROM products"
-					+ " WHERE owner LIKE ? AND updown='yes'";
+					+ " WHERE owner LIKE ? AND updown='yes' order by owner desc";
 	public  List<Product> selectProductsUpOwner(String search) throws VGBException{
 		List<Product> list =new ArrayList<>();
 		try(
