@@ -214,7 +214,7 @@ class ProductsSelectDAO {
 	private static final String SELECT_PRODUYS_BY_UPDOWN="SELECT"
 			+ " id,name,description,origin,ownerN,changebox,owner,host,unitprice,createTime,buy,wantChange,photoUrl,customer,updown" 
 			+ "	FROM products"
-			+ " WHERE updown LIKE ? order by createTime desc";
+			+ " WHERE updown LIKE ? AND customer IS NULL order by createTime desc";
 			
 	public  List<Product> selectProductsUpdown(String updown) throws VGBException{
 		List<Product> list =new ArrayList<>();
