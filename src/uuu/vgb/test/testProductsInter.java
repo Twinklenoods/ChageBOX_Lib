@@ -23,7 +23,7 @@ public class testProductsInter {
 				c.setUnitPrice(1000);
 				c.setDescription("這是敘述");
 				c.setWantChange("想交換的物品");
-				c.setOwnerN("va");
+				c.setOwner(owner);
 				
 				c.setHost("ps4");
 				c.setChangebox("");

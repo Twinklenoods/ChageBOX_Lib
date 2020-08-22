@@ -10,7 +10,7 @@ public class TestProductSelectid {
 	ProductSelectService service =new ProductSelectService();
 	
 	try {
-		System.out.println(service.getProduct("9"));
+		System.out.println(service.getUpOwner("A123456789"));
 		System.out.println("bye");
 	}catch (VGBException e) {
 		e.printStackTrace();

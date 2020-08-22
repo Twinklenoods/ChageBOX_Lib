@@ -126,7 +126,7 @@ class ProductsSelectDAO {
 
 
 	private static final String SELECT_PRODUYS_BY_OWNER = "SELECT"
-			+ " products.id,products.name,description,origin,customer.name,changebox,customers.id,host,unitprice,createTime,buy,wantChange,photoUrl,customer,updown" 
+			+ " products.id,products.name,description,origin,customers.name,changebox,customers.id,host,unitprice,createTime,buy,wantChange,photoUrl,customer,updown" 
 			+ "	FROM products LEFT JOIN customers ON customers.id=products.owner"
 					+ " WHERE customers.id LIKE ? AND updown='no'";
 	public  List<Product> searctProductsByOwner(String ownerId) throws VGBException{
@@ -316,11 +316,12 @@ class ProductsSelectDAO {
 	}
 	
 	private static final String SELECT_PRODUYS_BY_UPOWNER = "SELECT"
-			+ " products.id,products.name,description,origin,customers.name,changebox,customer.id,host,unitprice,createTime,buy,wantChange,photoUrl,customer,updown" 
+			+ " products.id,products.name,description,origin,customers.name,changebox,customers.id,host,unitprice,createTime,buy,wantChange,photoUrl,customer,updown" 
 			+ "	FROM products LEFT JOIN customers ON customers.id=Products.owner"
-					+ " WHERE customer.name LIKE ? AND updown='yes' order by customers.name desc";
+					+ " WHERE customers.id LIKE ? AND updown='yes' order by customers.name desc";
 	public  List<Product> selectProductsUpOwner(String search) throws VGBException{
 		List<Product> list =new ArrayList<>();
+		LOG.info("selectProductsUpOwner");
 		try(
 				Connection connection =RDBConnection.getConnection();//1.2
 				PreparedStatement pstmt =connection.prepareStatement(SELECT_PRODUYS_BY_UPOWNER);//3
@@ -359,7 +360,8 @@ class ProductsSelectDAO {
 					
 					
 					
-					
+
+					LOG.info(p.toString());
 					
 				}
 				
