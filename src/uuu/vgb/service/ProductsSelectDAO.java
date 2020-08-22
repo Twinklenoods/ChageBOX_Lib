@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import uuu.vgb.entity.Customer;
 import uuu.vgb.entity.Product;
 import uuu.vgb.entity.VGBException;
 
@@ -62,9 +63,9 @@ class ProductsSelectDAO {
 	}
 	
 	private static final String SELECT_PRODUCT_BY_ID="SELECT"
-			+ " id,name,description,origin,ownerN,changebox,owner,host,unitprice,createTime,buy,wantChange,photoUrl,customer" 
-			+ "	FROM products"
-					+ " WHERE id=?";
+			+ " products.id,products.name,description,origin,customers.id,changebox,customers.name,host,unitprice,createTime,buy,wantChange,photoUrl,customer" 
+			+ "	FROM products LEFT JOIN customers ON customers.id=products.owner"
+					+ " WHERE products.id=?";
 			
 	Product selectProductsById(String id) throws VGBException {
 		Product c = null;
@@ -84,21 +85,26 @@ class ProductsSelectDAO {
 					){
 						//5.處理rs
 				while(rs.next()) {
-						c=new Product();
-						c.setName(rs.getString("name"));
-						c.setOwner(rs.getString("owner"));
-						c.setCustomer(rs.getString("customer"));
-						c.setId(rs.getInt("id"));
-						c.setUnitPrice(rs.getDouble("UnitPrice"));
-						c.setDescription(rs.getString("Description"));			
-						c.setWantChange(rs.getString("WantChange"));
-						c.setPhotoUrl(rs.getString("PhotoUrl"));
-						c.setOrigin(rs.getString("Origin"));
-						c.setHost(rs.getString("Host"));
-						c.setBuy(rs.getString("Buy"));
-						c.setChangebox(rs.getString("Changebox"));
-						c.setOwnerN(rs.getString("ownerN"));
-						
+					c=new Product();
+					Customer owner= new Customer();
+					
+					c.setName(rs.getString("name"));
+					owner.setName(rs.getString("customers.name"));
+					owner.setId(rs.getString("customers.id"));
+					
+					c.setCustomer(rs.getString("customer"));
+					c.setId(rs.getInt("id"));
+					c.setUnitPrice(rs.getDouble("UnitPrice"));
+					
+					c.setDescription(rs.getString("Description"));			
+					c.setWantChange(rs.getString("WantChange"));
+					c.setPhotoUrl(rs.getString("PhotoUrl"));
+					c.setOrigin(rs.getString("Origin"));
+					c.setHost(rs.getString("Host"));
+					c.setBuy(rs.getString("Buy"));
+					c.setChangebox(rs.getString("Changebox"));
+					//c.setOwnerN(rs.getString("ownerN"));
+					c.setOwner(owner);
 						LOG.info("有東西！");
 						
 				}

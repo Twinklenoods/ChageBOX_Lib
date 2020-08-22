@@ -25,7 +25,7 @@ class ProductsDAO {
 			//3.1傳入?值
 			pstmt.setInt(1,c.getId());//3.1
 			pstmt.setString(2,c.getName());
-			pstmt.setString(3,c.getOwner());
+			pstmt.setString(3,c.getOwner().getName());//取得customer的name
 			pstmt.setString(4,c.getCustomer());			
 			pstmt.setDouble(5,c.getUnitPrice());
 			pstmt.setString(6,c.getDescription());			
@@ -55,8 +55,8 @@ class ProductsDAO {
 
 
 	private static final String SELECT_PRODUCT_BY_ID="SELECT"
-			+ " id,name,description,origin,ownerN,changebox,owner,host,unitprice,createTime,buy,wantChange,photoUrl,customer" 
-			+ "	FROM products"
+			+ " products.id,products.name,description,origin,customers.id,changebox,customers.name,host,unitprice,createTime,buy,wantChange,photoUrl,customer" 
+			+ "	FROM products LEFT JOIN customers ON customers.id=products.owner"
 					+ " WHERE id=?";
 			
 	Product selectProductsById(String id) throws VGBException {
@@ -77,8 +77,12 @@ class ProductsDAO {
 						//5.處理rs
 				while(rs.next()) {
 						c=new Product();
+						Customer owner= new Customer();
+						
 						c.setName(rs.getString("name"));
-						c.setOwner(rs.getString("owner"));
+						owner.setName(rs.getString("cusstomers.name"));
+						owner.setId(rs.getString("cusstomers.id"));
+						
 						c.setCustomer(rs.getString("customer"));
 						c.setId(rs.getInt("id"));
 						c.setUnitPrice(rs.getDouble("UnitPrice"));
@@ -90,8 +94,8 @@ class ProductsDAO {
 						c.setHost(rs.getString("Host"));
 						c.setBuy(rs.getString("Buy"));
 						c.setChangebox(rs.getString("Changebox"));
-						c.setOwnerN(rs.getString("ownerN"));
-						
+						//c.setOwnerN(rs.getString("ownerN"));
+						c.setOwner(owner);
 						
 						
 				}
@@ -124,7 +128,7 @@ class ProductsDAO {
 			pstmt.setString(7,p.getHost());
 			pstmt.setString(8,p.getBuy());
 			pstmt.setString(9,p.getChangebox());
-			pstmt.setString(10,p.getOwner());
+			pstmt.setString(10,p.getOwner().getName());
 			pstmt.setInt(11,p.getId());
 			pstmt.executeUpdate();//4.執行指令
 			
@@ -156,7 +160,7 @@ public void updown(Product p) throws VGBException{
 			//3.1傳入?值
 			//3.1
 			pstmt.setString(1,p.getUpdown());
-			pstmt.setString(2,p.getOwner());
+			pstmt.setString(2,p.getOwner().getName());
 			
 			pstmt.setInt(3,p.getId());
 			pstmt.executeUpdate();//4.執行指令

@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 public class Product {
 	private int id;// Pkey,AUTO_INCREMENT(surrogste key)
 	private String name;// 可重複品項名稱,required,遊戲名稱
-	private String owner;// 訂單建立者
+	private Customer owner;// 訂單建立者
 	private String customer;// 交易對象
 	private double unitPrice;// 單價,required//BuyPrice
 	private String description = "";// 商品描述//comment1
@@ -93,11 +93,11 @@ public class Product {
 		this.origin = origin;
 	}
 
-	public String getOwner() {
+	public Customer getOwner() {
 		return owner;
 	}
 
-	public void setOwner(String owner) {
+	public void setOwner(Customer owner) {
 		this.owner = owner;
 	}
 
