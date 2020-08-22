@@ -11,9 +11,10 @@ import uuu.vgb.entity.VGBException;
 class ProductsSelectDAO {
 
 	private Logger LOG = Logger.getLogger(ProductsSelectDAO.class.getName());
+	
 	private static final String SELECT_ALL_PRODUCTS="SELECT"
-			+ " id,name,description,origin,ownerN,owner,host,unitprice,createTime,buy,wantChange,photoUrl,customer" 
-			+ "	FROM products";
+			+ " products.id,products.name,description,origin,customers.name,customers.id,host,unitprice,createTime,buy,wantChange,photoUrl,customer" 
+			+ "	FROM products LEFT JOIN customers ON customers.id=products.owner";
 			
 	List<Product> selectAllProducts() throws VGBException{
 		List<Product> list =new ArrayList<>();
@@ -36,18 +37,23 @@ class ProductsSelectDAO {
 //				}
 				
 				Product p = new Product();
-				
+				Customer owner =new Customer();
 			
 				p.setId(rs.getInt("id"));
 				p.setName(rs.getString("name"));
 				p.setUnitPrice(rs.getDouble("unitprice"));
-				p.setOwner(rs.getString("owner"));
+				
+				owner.setName(rs.getString("customers.name"));//取代ownerN功能
+				owner.setId(rs.getString("customers.id"));//取代owner工能
+				
 				p.setDescription(rs.getString("Description"));			
 				p.setWantChange(rs.getString("WantChange"));
 				p.setPhotoUrl(rs.getString("PhotoUrl"));
 				p.setOrigin(rs.getString("Origin"));
 				p.setHost(rs.getString("Host"));
-				p.setOwnerN(rs.getString("ownerN"));
+				
+				
+				p.setOwner(owner);//再把取得的owner.setName，owner.setId放到owner
 				
 				list.add(p);
 
@@ -120,25 +126,32 @@ class ProductsSelectDAO {
 
 
 	private static final String SELECT_PRODUYS_BY_OWNER = "SELECT"
-			+ " id,name,description,origin,ownerN,changebox,owner,host,unitprice,createTime,buy,wantChange,photoUrl,customer,updown" 
-			+ "	FROM products"
-					+ " WHERE owner LIKE ? AND updown='no'";
-	public  List<Product> searchProductsByname(String owner) throws VGBException{
+			+ " products.id,products.name,description,origin,customer.name,changebox,customers.id,host,unitprice,createTime,buy,wantChange,photoUrl,customer,updown" 
+			+ "	FROM products LEFT JOIN customers ON customers.id=products.owner"
+					+ " WHERE customers.id LIKE ? AND updown='no'";
+	public  List<Product> searctProductsByOwner(String ownerId) throws VGBException{
 		List<Product> list =new ArrayList<>();
 		try(
 		Connection connection =RDBConnection.getConnection();//1.2
-		PreparedStatement pstmt =connection.prepareStatement(SELECT_PRODUYS_BY_NAME);//3
+		PreparedStatement pstmt =connection.prepareStatement(SELECT_PRODUYS_BY_OWNER);//3
 		){
 			//3.1傳入
-			pstmt.setString(1, '%'+owner+'%');
+			pstmt.setString(1, '%'+ownerId+'%');
 			//4.執行指令
 			try(
 			ResultSet rs =pstmt.executeQuery();
 			){
 				while(rs.next()) {
 					Product p = new Product();
+					Customer owner =new Customer(); 
+					
 					p.setName(rs.getString("name"));
-					p.setOwner(rs.getString("owner"));
+					
+					
+					owner.setName(rs.getString("customers.name"));
+					owner.setId(rs.getString("customers.id"));
+					
+					
 					p.setCustomer(rs.getString("customer"));
 					p.setId(rs.getInt("id"));
 					p.setUnitPrice(rs.getDouble("UnitPrice"));
@@ -149,7 +162,9 @@ class ProductsSelectDAO {
 					p.setHost(rs.getString("Host"));
 					p.setBuy(rs.getString("Buy"));
 					p.setChangebox(rs.getString("Changebox"));
-					p.setOwnerN(rs.getString("ownerN"));
+					
+					
+					p.setOwner(owner);
 					
 					list.add(p);
 					
@@ -172,15 +187,15 @@ class ProductsSelectDAO {
 		return list;
 	}
 	private static final String SELECT_PRODUYS_BY_NAME="SELECT"
-			+ " id,name,description,origin,ownerN,changebox,owner,host,unitprice,createTime,buy,wantChange,photoUrl,customer" 
-			+ "	FROM products"
-			+ " WHERE name LIKE ? AND updown='yes'";
+			+ " products.id,products.name,description,origin,customers.name,changebox,customers.id,host,unitprice,createTime,buy,wantChange,photoUrl,customer" 
+			+ "	FROM products LEFT JOIN customers ON customers.id=products.owner"
+			+ " WHERE products.name LIKE ? AND updown='yes'";
 			
-	public  List<Product> selectProductsByOwner(String search) throws VGBException{
+	public  List<Product> selectProductsByname(String search) throws VGBException{
 		List<Product> list =new ArrayList<>();
 		try(
 				Connection connection =RDBConnection.getConnection();//1.2
-				PreparedStatement pstmt =connection.prepareStatement(SELECT_PRODUYS_BY_OWNER);//3
+				PreparedStatement pstmt =connection.prepareStatement(SELECT_PRODUYS_BY_NAME);//3
 				){
 			//3.1傳入
 			pstmt.setString(1, '%'+search+'%');
@@ -190,8 +205,14 @@ class ProductsSelectDAO {
 			){
 				while(rs.next()) {
 					Product p = new Product();
+					Customer owner= new Customer();
 					p.setName(rs.getString("name"));
-					p.setOwner(rs.getString("owner"));
+					
+			
+					owner.setName(rs.getString("customers.name"));
+					owner.setId(rs.getString("customers.id"));
+					
+					
 					p.setCustomer(rs.getString("customer"));
 					p.setId(rs.getInt("id"));
 					p.setUnitPrice(rs.getDouble("UnitPrice"));
@@ -202,8 +223,13 @@ class ProductsSelectDAO {
 					p.setHost(rs.getString("Host"));
 					p.setBuy(rs.getString("Buy"));
 					p.setChangebox(rs.getString("Changebox"));
-					p.setOwnerN(rs.getString("ownerN"));
+					
 					p.setCreateTime(rs.getString("createTime"));
+					
+					
+					
+					
+					p.setOwner(owner);
 					list.add(p);
 					
 					
@@ -226,8 +252,8 @@ class ProductsSelectDAO {
 	}
 
 	private static final String SELECT_PRODUYS_BY_UPDOWN="SELECT"
-			+ " id,name,description,origin,ownerN,changebox,owner,host,unitprice,createTime,buy,wantChange,photoUrl,customer,updown" 
-			+ "	FROM products"
+			+ " products.id,products.name,description,origin,customers.name,changebox,customers.id,host,unitprice,createTime,buy,wantChange,photoUrl,customer,updown" 
+			+ "	FROM products LEFT JOIN customers ON customers.id=products.owner"
 			+ " WHERE updown LIKE ? AND customer IS NULL order by createTime desc";
 			
 	public  List<Product> selectProductsUpdown(String updown) throws VGBException{
@@ -246,8 +272,13 @@ class ProductsSelectDAO {
 			){
 				while(rs.next()) {
 					Product p = new Product();
+					Customer owner =new Customer();
 					p.setName(rs.getString("name"));
-					p.setOwner(rs.getString("owner"));
+					
+				
+					owner.setName(rs.getString("customers.name"));
+					owner.setId(rs.getString("customers.id"));
+					
 					p.setCustomer(rs.getString("customer"));
 					p.setId(rs.getInt("id"));
 					p.setUnitPrice(rs.getDouble("UnitPrice"));
@@ -258,9 +289,12 @@ class ProductsSelectDAO {
 					p.setHost(rs.getString("Host"));
 					p.setBuy(rs.getString("Buy"));
 					p.setChangebox(rs.getString("Changebox"));
-					p.setOwnerN(rs.getString("ownerN"));
+					
 					p.setCreateTime(rs.getString("createTime"));
 					p.setUpdown(rs.getString("updown"));
+					
+					
+					p.setOwner(owner);
 					list.add(p);
 					
 				
@@ -282,9 +316,9 @@ class ProductsSelectDAO {
 	}
 	
 	private static final String SELECT_PRODUYS_BY_UPOWNER = "SELECT"
-			+ " id,name,description,origin,ownerN,changebox,owner,host,unitprice,createTime,buy,wantChange,photoUrl,customer,updown" 
-			+ "	FROM products"
-					+ " WHERE owner LIKE ? AND updown='yes' order by owner desc";
+			+ " products.id,products.name,description,origin,customers.name,changebox,customer.id,host,unitprice,createTime,buy,wantChange,photoUrl,customer,updown" 
+			+ "	FROM products LEFT JOIN customers ON customers.id=Products.owner"
+					+ " WHERE customer.name LIKE ? AND updown='yes' order by customers.name desc";
 	public  List<Product> selectProductsUpOwner(String search) throws VGBException{
 		List<Product> list =new ArrayList<>();
 		try(
@@ -299,8 +333,13 @@ class ProductsSelectDAO {
 			){
 				while(rs.next()) {
 					Product p = new Product();
+					Customer owner =new Customer();
+					
 					p.setName(rs.getString("name"));
-					p.setOwner(rs.getString("owner"));
+					
+					owner.setId(rs.getString("customers.id"));
+					owner.setName(rs.getString("customers.name"));
+					
 					p.setCustomer(rs.getString("customer"));
 					p.setId(rs.getInt("id"));
 					p.setUnitPrice(rs.getDouble("UnitPrice"));
@@ -311,8 +350,11 @@ class ProductsSelectDAO {
 					p.setHost(rs.getString("Host"));
 					p.setBuy(rs.getString("Buy"));
 					p.setChangebox(rs.getString("Changebox"));
-					p.setOwnerN(rs.getString("ownerN"));
+					
 					p.setCreateTime(rs.getString("createTime"));
+					
+					
+					p.setOwner(owner);
 					list.add(p);
 					
 					

@@ -15,11 +15,11 @@ public class ProductSelectService {
 	return dao.selectProductsById(id);
 	}
 	
-	public List<Product> getOwner(String owner)throws VGBException{
-		return dao.selectProductsByOwner(owner);
+	public List<Product> getOwner(String ownerId)throws VGBException{
+		return dao.searctProductsByOwner(ownerId);
 		}
 	public List<Product> searchProductsByName(String search)throws VGBException{
-		return dao.searchProductsByname(search);
+		return dao.selectProductsByname(search);
 	}
 	public List<Product> getUpdown(String updown)throws VGBException{
 		return dao.selectProductsUpdown(updown);

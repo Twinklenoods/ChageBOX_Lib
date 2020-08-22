@@ -25,7 +25,7 @@ class ProductsDAO {
 			//3.1傳入?值
 			pstmt.setInt(1,c.getId());//3.1
 			pstmt.setString(2,c.getName());
-			pstmt.setString(3,c.getOwner().getName());//取得customer的name
+			pstmt.setString(3,c.getOwner().getId());
 			pstmt.setString(4,c.getCustomer());			
 			pstmt.setDouble(5,c.getUnitPrice());
 			pstmt.setString(6,c.getDescription());			
@@ -35,7 +35,7 @@ class ProductsDAO {
 			pstmt.setString(10,c.getHost());
 			pstmt.setString(11,c.getBuy());
 			pstmt.setString(12,c.getChangebox());
-			pstmt.setString(13,c.getOwnerN());
+			pstmt.setString(13,c.getOwner().getName());//取得customer的name
 			
 			
 			 pstmt.executeUpdate();//4.執行指令
@@ -107,7 +107,7 @@ class ProductsDAO {
 				return c;
 			}
 	private static final String UPDATE_PRODUCT=" UPDATE products"
-			+" SET name=?,unitprice=?,description=?, wantChange=?, photoUrl=?, origin=?, host=?, buy=?, changebox=?, owner=?"
+			+" SET name=?,unitprice=?,description=?, wantChange=?, photoUrl=?, origin=?, host=?, buy=?, changebox=?, "
 			+" WHERE id=?";
  
  public void update(Product p) throws VGBException{
@@ -128,8 +128,8 @@ class ProductsDAO {
 			pstmt.setString(7,p.getHost());
 			pstmt.setString(8,p.getBuy());
 			pstmt.setString(9,p.getChangebox());
-			pstmt.setString(10,p.getOwner().getName());
-			pstmt.setInt(11,p.getId());
+			//pstmt.setString(10,p.getOwner().getId());
+			pstmt.setInt(10,p.getId());
 			pstmt.executeUpdate();//4.執行指令
 			
 		} catch (SQLIntegrityConstraintViolationException e) {
@@ -160,7 +160,7 @@ public void updown(Product p) throws VGBException{
 			//3.1傳入?值
 			//3.1
 			pstmt.setString(1,p.getUpdown());
-			pstmt.setString(2,p.getOwner().getName());
+			pstmt.setString(2,p.getOwner().getId());
 			
 			pstmt.setInt(3,p.getId());
 			pstmt.executeUpdate();//4.執行指令
