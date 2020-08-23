@@ -20,7 +20,7 @@ class ProductsSelectDAO {
 		List<Product> list =new ArrayList<>();
 		
 
-		LOG.info("selectAllProducts");
+		//LOG.info("selectAllProducts");
 		try (Connection conn =RDBConnection.getConnection();
 				Statement stmt =conn.createStatement();//.3建立指令
 				ResultSet rs= stmt.executeQuery(SELECT_ALL_PRODUCTS);
@@ -57,7 +57,7 @@ class ProductsSelectDAO {
 				
 				list.add(p);
 
-				LOG.info(p.toString());
+				//LOG.info(p.toString());
 			}
 	
 		
@@ -76,7 +76,7 @@ class ProductsSelectDAO {
 	Product selectProductsById(String id) throws VGBException {
 		Product c = null;
 
-		LOG.info("selectProductsById");
+		//LOG.info("selectProductsById");
 		
 		try (
 			Connection connection =RDBConnection.getConnection();//1.2取得連線物件
@@ -117,7 +117,7 @@ class ProductsSelectDAO {
 					}
 				} catch (SQLException e) {
 
-					LOG.info(e.toString());
+					//LOG.info(e.toString());
 					throw new VGBException("用產品編號查詢失敗",e);		
 				}
 				 
@@ -361,7 +361,7 @@ class ProductsSelectDAO {
 					
 					
 
-					LOG.info(p.toString());
+				//	LOG.info(p.toString());
 					
 				}
 				

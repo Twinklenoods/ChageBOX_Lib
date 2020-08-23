@@ -24,7 +24,7 @@ public class ProductService {
 		
 		
 		if(c!=null) {
-			if(owner.equals(c.getOwner())) {
+			if(owner.equals(c.getOwner().getId())) {
 			return c;
 			}
 			

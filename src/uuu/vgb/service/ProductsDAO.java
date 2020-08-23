@@ -57,7 +57,7 @@ class ProductsDAO {
 	private static final String SELECT_PRODUCT_BY_ID="SELECT"
 			+ " products.id,products.name,description,origin,customers.id,changebox,customers.name,host,unitprice,createTime,buy,wantChange,photoUrl,customer" 
 			+ "	FROM products LEFT JOIN customers ON customers.id=products.owner"
-					+ " WHERE id=?";
+					+ " WHERE products.id=?";
 			
 	Product selectProductsById(String id) throws VGBException {
 		Product c = null;
@@ -80,8 +80,8 @@ class ProductsDAO {
 						Customer owner= new Customer();
 						
 						c.setName(rs.getString("name"));
-						owner.setName(rs.getString("cusstomers.name"));
-						owner.setId(rs.getString("cusstomers.id"));
+						owner.setName(rs.getString("customers.name"));
+						owner.setId(rs.getString("customers.id"));
 						
 						c.setCustomer(rs.getString("customer"));
 						c.setId(rs.getInt("id"));

@@ -14,7 +14,7 @@ public class testproductUPDOWN {
 		// TODO Auto-generated method stub
 		ProductService service =new ProductService();
 		try {
-			Product p = service.login("18", "A123456789");
+			Product p = service.login("64", "A123456789");
 				
 				p.setUpdown("yes");
 				service.updown(p);

@@ -14,7 +14,7 @@ public class testproductUPDATE {
 		// TODO Auto-generated method stub
 		ProductService service =new ProductService();
 		try {
-			Product p = service.login("18", "A123456789");
+			Product p = service.login("58", "A129067964");
 				
 				p.setName("修改名子2");
 				p.setUnitPrice(1200);
