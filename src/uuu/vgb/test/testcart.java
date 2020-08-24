@@ -25,7 +25,7 @@ public class testcart {
 		
 		
 		
-		ShoppingCart cart =new ShoppingCart();
+		
 		
 	}
 

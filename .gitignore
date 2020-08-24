@@ -1,0 +1,10 @@
+src/uuu/vgb/service/ProductsDAO.class
+src/uuu/vgb/service/ProductSelectService.class
+src/uuu/vgb/service/ProductService.class
+src/uuu/vgb/service/ProductsSelectDAO.class
+src/uuu/vgb/test/testDeleteProduct.class
+src/uuu/vgb/test/TestProductSelectAll.class
+src/uuu/vgb/test/TestProductSelectid.class
+src/uuu/vgb/test/testProductsInter.class
+src/uuu/vgb/test/testproductUPDATE.class
+src/uuu/vgb/test/testproductUPDOWN.class
