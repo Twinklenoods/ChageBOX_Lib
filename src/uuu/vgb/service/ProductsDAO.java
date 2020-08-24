@@ -107,7 +107,7 @@ class ProductsDAO {
 				return c;
 			}
 	private static final String UPDATE_PRODUCT=" UPDATE products"
-			+" SET name=?,unitprice=?,description=?, wantChange=?, photoUrl=?, origin=?, host=?, buy=?, changebox=?, "
+			+" SET name=?,unitprice=?,description=?, wantChange=?, photoUrl=?, origin=?, host=?, buy=?, changebox=? "
 			+" WHERE id=?";
  
  public void update(Product p) throws VGBException{
