@@ -12,7 +12,7 @@ import uuu.vgb.entity.Product;
 import uuu.vgb.entity.VGBException;
 class ProductsDAO {
 	
-	//, createTime
+
 	private static final String INSERT_PRODUCT= "   INSERT INTO `products` (`id`, `name`, `owner`, `customer`, `unitprice`, `description`, `wantChange`,`photoUrl`, `origin`, `host`, `buy`, `changebox`, `ownerN`) \n" 
 			+ "    VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			

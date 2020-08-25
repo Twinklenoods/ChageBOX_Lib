@@ -28,6 +28,18 @@ public class ShoppingCart {
 		cart.put(item, 1);
 	}
 
+	//cart's的accessor(s)的寫法
+		public int size() {
+			return cart.size();
+		}
+//	public void update(CartItem item) {
+//	if(cart.get(item)==null)
+//	throw new DataInvalidException("修改購物車數量失敗,購物名細部正確");
+//	cart.put(item,quantity);
+//	}
+
+		
+		
 	@Override
 	public String toString() {
 		String result = getClass().getSimpleName() + "[訂購人=" + customer + ",\n" + " 購物明細=";
@@ -36,6 +48,10 @@ public class ShoppingCart {
 		}
 		return result;
 	}
+	public Integer remove(CartItem key) {
+		return cart.remove(key);
+	}
+
 	public Set<CartItem> getCartItemSet() {
 		return cart.keySet();
 	}

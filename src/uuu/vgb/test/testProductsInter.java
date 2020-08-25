@@ -18,12 +18,12 @@ public class testProductsInter {
 				
 				
 				owner.setId("A129067964");
-				
+				c.setOwner(owner);
 				
 				c.setUnitPrice(1000);
 				c.setDescription("這是敘述");
 				c.setWantChange("想交換的物品");
-				c.setOwner(owner);
+				
 				
 				c.setHost("ps4");
 				c.setChangebox("");
