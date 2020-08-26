@@ -39,6 +39,11 @@ public class Question {
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
+	@Override
+	public String toString() {
+		return "Question [questionId=" + questionId + ", productId=" + productId + ", user=" + user + ", question="
+				+ question + ", createTime=" + createTime + "]";
+	}
 
 	
 	

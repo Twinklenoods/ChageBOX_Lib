@@ -17,7 +17,7 @@ public class testQuertionsInter {
 			Customer Q= new Customer();
 			
 				
-			p.setId(2);
+			p.setId(1);
 			q.setProductId(p);
 				
 			Q.setId("A123456789");
