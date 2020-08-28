@@ -7,7 +7,14 @@ public class OwnerQa {
 	public Customer customerId;
 	public String ownerQA;
 	public String createTime;
+	public String answer;
 	
+	public String getAnswer() {
+		return answer;
+	}
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
 	public int getId() {
 		return id;
 	}
@@ -41,8 +48,9 @@ public class OwnerQa {
 	@Override
 	public String toString() {
 		return "OwnerQa [id=" + id + ", ownerId=" + ownerId + ", customerId=" + customerId + ", ownerQA=" + ownerQA
-				+ ", createTime=" + createTime + "]";
+				+ ", createTime=" + createTime + ", answer=" + answer + "]";
 	}
+
 	
 	
 	
