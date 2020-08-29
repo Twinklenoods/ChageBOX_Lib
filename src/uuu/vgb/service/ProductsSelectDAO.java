@@ -125,7 +125,7 @@ class ProductsSelectDAO {
 			}
 
 
-	private static final String SELECT_PRODUYS_BY_OWNER = "SELECT"
+	private static final String SELECT_PRODUYS_BY_OWNER = "SELECT" //使用者的下架商品
 			+ " products.id,products.name,description,origin,customers.name,changebox,customers.id,host,unitprice,createTime,buy,wantChange,photoUrl,customer,updown" 
 			+ "	FROM products LEFT JOIN customers ON customers.id=products.owner"
 					+ " WHERE customers.id LIKE ? AND updown='no'";
@@ -251,7 +251,7 @@ class ProductsSelectDAO {
 		return list;
 	}
 
-	private static final String SELECT_PRODUYS_BY_UPDOWN="SELECT"
+	private static final String SELECT_PRODUYS_BY_UPDOWN="SELECT" //上下架商品
 			+ " products.id,products.name,description,origin,customers.name,changebox,customers.id,host,unitprice,createTime,buy,wantChange,photoUrl,customer,updown" 
 			+ "	FROM products LEFT JOIN customers ON customers.id=products.owner"
 			+ " WHERE updown LIKE ? AND customer IS NULL order by createTime desc";
@@ -315,7 +315,7 @@ class ProductsSelectDAO {
 		return list;
 	}
 	
-	private static final String SELECT_PRODUYS_BY_UPOWNER = "SELECT"
+	private static final String SELECT_PRODUYS_BY_UPOWNER = "SELECT" //找賣家
 			+ " products.id,products.name,description,origin,customers.name,changebox,customers.id,host,unitprice,createTime,buy,wantChange,photoUrl,customer,updown" 
 			+ "	FROM products LEFT JOIN customers ON customers.id=Products.owner"
 					+ " WHERE customers.id LIKE ? AND updown='yes' order by customers.name desc";
@@ -378,4 +378,378 @@ class ProductsSelectDAO {
 		return list;
 	}
 	
+	private static final String SELECT_PRODUYS_BY_UPCHANGE="SELECT" //上下架商品
+			+ " products.id,products.name,description,origin,customers.name,changebox,customers.id,host,unitprice,createTime,buy,wantChange,photoUrl,customer,updown" 
+			+ "	FROM products LEFT JOIN customers ON customers.id=products.owner"
+			+ " WHERE updown LIKE ? AND customer IS NULL AND changebox='yes' order by createTime desc";
+			
+	public  List<Product> selectProductsBOXUpdown(String updown) throws VGBException{
+		List<Product> list =new ArrayList<>();
+
+		LOG.info("selectProductsUpdown");
+		try(
+				Connection connection =RDBConnection.getConnection();//1.2
+				PreparedStatement pstmt =connection.prepareStatement(SELECT_PRODUYS_BY_UPCHANGE);//3
+				){
+			//3.1傳入
+			pstmt.setString(1, '%'+updown+'%');
+			//4.執行指令
+			try(
+					ResultSet rs =pstmt.executeQuery();
+			){
+				while(rs.next()) {
+					Product p = new Product();
+					Customer owner =new Customer();
+					p.setName(rs.getString("name"));
+					
+				
+					owner.setName(rs.getString("customers.name"));
+					owner.setId(rs.getString("customers.id"));
+					
+					p.setCustomer(rs.getString("customer"));
+					p.setId(rs.getInt("id"));
+					p.setUnitPrice(rs.getDouble("UnitPrice"));
+					p.setDescription(rs.getString("Description"));			
+					p.setWantChange(rs.getString("WantChange"));
+					p.setPhotoUrl(rs.getString("PhotoUrl"));
+					p.setOrigin(rs.getString("Origin"));
+					p.setHost(rs.getString("Host"));
+					p.setBuy(rs.getString("Buy"));
+					p.setChangebox(rs.getString("Changebox"));
+					
+					p.setCreateTime(rs.getString("createTime"));
+					p.setUpdown(rs.getString("updown"));
+					
+					
+					p.setOwner(owner);
+					list.add(p);
+					
+				
+					
+					
+				}
+				
+				
+				
+			}
+			
+		}catch(SQLException e) {
+			throw new VGBException("[用關鍵字查詢失敗]",e);
+			
+			
+		}
+		
+		return list;
+	}
+	
+	private static final String SELECT_PRODUYS_BY_UPBUY="SELECT" //上下架商品
+			+ " products.id,products.name,description,origin,customers.name,changebox,customers.id,host,unitprice,createTime,buy,wantChange,photoUrl,customer,updown" 
+			+ "	FROM products LEFT JOIN customers ON customers.id=products.owner"
+			+ " WHERE updown LIKE ? AND customer IS NULL AND buy='yes' order by createTime desc";
+			
+	public  List<Product> selectProductsBUYUpdown(String updown) throws VGBException{
+		List<Product> list =new ArrayList<>();
+
+		
+		try(
+				Connection connection =RDBConnection.getConnection();//1.2
+				PreparedStatement pstmt =connection.prepareStatement(SELECT_PRODUYS_BY_UPBUY);//3
+				){
+			//3.1傳入
+			pstmt.setString(1, '%'+updown+'%');
+			//4.執行指令
+			try(
+					ResultSet rs =pstmt.executeQuery();
+			){
+				while(rs.next()) {
+					Product p = new Product();
+					Customer owner =new Customer();
+					p.setName(rs.getString("name"));
+					
+				
+					owner.setName(rs.getString("customers.name"));
+					owner.setId(rs.getString("customers.id"));
+					
+					p.setCustomer(rs.getString("customer"));
+					p.setId(rs.getInt("id"));
+					p.setUnitPrice(rs.getDouble("UnitPrice"));
+					p.setDescription(rs.getString("Description"));			
+					p.setWantChange(rs.getString("WantChange"));
+					p.setPhotoUrl(rs.getString("PhotoUrl"));
+					p.setOrigin(rs.getString("Origin"));
+					p.setHost(rs.getString("Host"));
+					p.setBuy(rs.getString("Buy"));
+					p.setChangebox(rs.getString("Changebox"));
+					
+					p.setCreateTime(rs.getString("createTime"));
+					p.setUpdown(rs.getString("updown"));
+					
+					
+					p.setOwner(owner);
+					list.add(p);
+					
+				
+					
+					
+				}
+				
+				
+				
+			}
+			
+		}catch(SQLException e) {
+			throw new VGBException("[用關鍵字查詢失敗]",e);
+			
+			
+		}
+		
+		return list;
+	}
+	private static final String SELECT_PRODUYS_BY_OWNERBOXdown = "SELECT" //使用者的下架商品
+			+ " products.id,products.name,description,origin,customers.name,changebox,customers.id,host,unitprice,createTime,buy,wantChange,photoUrl,customer,updown" 
+			+ "	FROM products LEFT JOIN customers ON customers.id=products.owner"
+					+ " WHERE customers.id LIKE ? AND updown='no' AND changebox='yes' ";
+	public  List<Product> searctProductsByOwnerBOXdown(String ownerId) throws VGBException{
+		List<Product> list =new ArrayList<>();
+		try(
+		Connection connection =RDBConnection.getConnection();//1.2
+		PreparedStatement pstmt =connection.prepareStatement(SELECT_PRODUYS_BY_OWNERBOXdown);//3
+		){
+			//3.1傳入
+			pstmt.setString(1, '%'+ownerId+'%');
+			//4.執行指令
+			try(
+			ResultSet rs =pstmt.executeQuery();
+			){
+				while(rs.next()) {
+					Product p = new Product();
+					Customer owner =new Customer(); 
+					
+					p.setName(rs.getString("name"));
+					
+					
+					owner.setName(rs.getString("customers.name"));
+					owner.setId(rs.getString("customers.id"));
+					
+					
+					p.setCustomer(rs.getString("customer"));
+					p.setId(rs.getInt("id"));
+					p.setUnitPrice(rs.getDouble("UnitPrice"));
+					p.setDescription(rs.getString("Description"));			
+					p.setWantChange(rs.getString("WantChange"));
+					p.setPhotoUrl(rs.getString("PhotoUrl"));
+					p.setOrigin(rs.getString("Origin"));
+					p.setHost(rs.getString("Host"));
+					p.setBuy(rs.getString("Buy"));
+					p.setChangebox(rs.getString("Changebox"));
+					
+					
+					p.setOwner(owner);
+					
+					list.add(p);
+					
+					
+					
+					
+					
+				}
+				
+				
+				
+			}
+			
+		}catch(SQLException e) {
+			throw new VGBException("[用關鍵字查詢失敗]",e);
+			
+			
+		}
+		
+		return list;
+	}
+	
+	private static final String SELECT_PRODUYS_BY_OWNERBOXup = "SELECT" //使用者的下架商品
+			+ " products.id,products.name,description,origin,customers.name,changebox,customers.id,host,unitprice,createTime,buy,wantChange,photoUrl,customer,updown" 
+			+ "	FROM products LEFT JOIN customers ON customers.id=products.owner"
+					+ " WHERE customers.id LIKE ? AND updown='yes' AND changebox='yes' ";
+	public  List<Product> searctProductsByOwnerBOXup(String ownerId) throws VGBException{
+		List<Product> list =new ArrayList<>();
+		try(
+		Connection connection =RDBConnection.getConnection();//1.2
+		PreparedStatement pstmt =connection.prepareStatement(SELECT_PRODUYS_BY_OWNERBOXup);//3
+		){
+			//3.1傳入
+			pstmt.setString(1, '%'+ownerId+'%');
+			//4.執行指令
+			try(
+			ResultSet rs =pstmt.executeQuery();
+			){
+				while(rs.next()) {
+					Product p = new Product();
+					Customer owner =new Customer(); 
+					
+					p.setName(rs.getString("name"));
+					
+					
+					owner.setName(rs.getString("customers.name"));
+					owner.setId(rs.getString("customers.id"));
+					
+					
+					p.setCustomer(rs.getString("customer"));
+					p.setId(rs.getInt("id"));
+					p.setUnitPrice(rs.getDouble("UnitPrice"));
+					p.setDescription(rs.getString("Description"));			
+					p.setWantChange(rs.getString("WantChange"));
+					p.setPhotoUrl(rs.getString("PhotoUrl"));
+					p.setOrigin(rs.getString("Origin"));
+					p.setHost(rs.getString("Host"));
+					p.setBuy(rs.getString("Buy"));
+					p.setChangebox(rs.getString("Changebox"));
+					
+					
+					p.setOwner(owner);
+					
+					list.add(p);
+					
+					
+					
+					
+					
+				}
+				
+				
+				
+			}
+			
+		}catch(SQLException e) {
+			throw new VGBException("[用關鍵字查詢失敗]",e);
+			
+			
+		}
+		
+		return list;
+	}
+	
+	private static final String SELECT_PRODUYS_BY_OWNERBUYup = "SELECT" //使用者的下架商品
+			+ " products.id,products.name,description,origin,customers.name,changebox,customers.id,host,unitprice,createTime,buy,wantChange,photoUrl,customer,updown" 
+			+ "	FROM products LEFT JOIN customers ON customers.id=products.owner"
+					+ " WHERE customers.id LIKE ? AND updown='yes' AND buy='yes' ";
+	public  List<Product> searctProductsByOwnerBUYup(String ownerId) throws VGBException{
+		List<Product> list =new ArrayList<>();
+		try(
+		Connection connection =RDBConnection.getConnection();//1.2
+		PreparedStatement pstmt =connection.prepareStatement(SELECT_PRODUYS_BY_OWNERBUYup);//3
+		){
+			//3.1傳入
+			pstmt.setString(1, '%'+ownerId+'%');
+			//4.執行指令
+			try(
+			ResultSet rs =pstmt.executeQuery();
+			){
+				while(rs.next()) {
+					Product p = new Product();
+					Customer owner =new Customer(); 
+					
+					p.setName(rs.getString("name"));
+					
+					
+					owner.setName(rs.getString("customers.name"));
+					owner.setId(rs.getString("customers.id"));
+					
+					
+					p.setCustomer(rs.getString("customer"));
+					p.setId(rs.getInt("id"));
+					p.setUnitPrice(rs.getDouble("UnitPrice"));
+					p.setDescription(rs.getString("Description"));			
+					p.setWantChange(rs.getString("WantChange"));
+					p.setPhotoUrl(rs.getString("PhotoUrl"));
+					p.setOrigin(rs.getString("Origin"));
+					p.setHost(rs.getString("Host"));
+					p.setBuy(rs.getString("Buy"));
+					p.setChangebox(rs.getString("Changebox"));
+					
+					
+					p.setOwner(owner);
+					
+					list.add(p);
+					
+					
+					
+					
+					
+				}
+				
+				
+				
+			}
+			
+		}catch(SQLException e) {
+			throw new VGBException("[用關鍵字查詢失敗]",e);
+			
+			
+		}
+		
+		return list;
+	}
+	
+	private static final String SELECT_PRODUYS_BY_OWNERBUYdown = "SELECT" //使用者的下架商品
+			+ " products.id,products.name,description,origin,customers.name,changebox,customers.id,host,unitprice,createTime,buy,wantChange,photoUrl,customer,updown" 
+			+ "	FROM products LEFT JOIN customers ON customers.id=products.owner"
+					+ " WHERE customers.id LIKE ? AND updown='no' AND buy='yes' ";
+	public  List<Product> searctProductsByOwnerBUYdown(String ownerId) throws VGBException{
+		List<Product> list =new ArrayList<>();
+		try(
+		Connection connection =RDBConnection.getConnection();//1.2
+		PreparedStatement pstmt =connection.prepareStatement(SELECT_PRODUYS_BY_OWNERBUYdown);//3
+		){
+			//3.1傳入
+			pstmt.setString(1, '%'+ownerId+'%');
+			//4.執行指令
+			try(
+			ResultSet rs =pstmt.executeQuery();
+			){
+				while(rs.next()) {
+					Product p = new Product();
+					Customer owner =new Customer(); 
+					
+					p.setName(rs.getString("name"));
+					
+					
+					owner.setName(rs.getString("customers.name"));
+					owner.setId(rs.getString("customers.id"));
+					
+					
+					p.setCustomer(rs.getString("customer"));
+					p.setId(rs.getInt("id"));
+					p.setUnitPrice(rs.getDouble("UnitPrice"));
+					p.setDescription(rs.getString("Description"));			
+					p.setWantChange(rs.getString("WantChange"));
+					p.setPhotoUrl(rs.getString("PhotoUrl"));
+					p.setOrigin(rs.getString("Origin"));
+					p.setHost(rs.getString("Host"));
+					p.setBuy(rs.getString("Buy"));
+					p.setChangebox(rs.getString("Changebox"));
+					
+					
+					p.setOwner(owner);
+					
+					list.add(p);
+					
+					
+					
+					
+					
+				}
+				
+				
+				
+			}
+			
+		}catch(SQLException e) {
+			throw new VGBException("[用關鍵字查詢失敗]",e);
+			
+			
+		}
+		
+		return list;
+	}
 }

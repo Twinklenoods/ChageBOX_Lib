@@ -29,4 +29,25 @@ public class ProductSelectService {
 		return dao.selectProductsUpOwner(owner);
 		}
 	
+	public List<Product> getBOX(String Box)throws VGBException{
+		return dao.selectProductsBOXUpdown(Box);
+		}
+	public List<Product> getBUY(String Buy)throws VGBException{
+		return dao.selectProductsBUYUpdown(Buy);
+		}
+	
+	public List<Product> getUpBOX(String owner)throws VGBException{
+		return dao.searctProductsByOwnerBOXup(owner);
+		}
+	public List<Product> getdownBOX(String owner)throws VGBException{
+		return dao.searctProductsByOwnerBOXdown(owner);
+		}
+	
+	public List<Product> getdownBUY(String owner)throws VGBException{
+		return dao.searctProductsByOwnerBUYdown(owner);
+		}
+	public List<Product> getupBUY(String owner)throws VGBException{
+		return dao.searctProductsByOwnerBUYup(owner);
+		}
+	
 }
