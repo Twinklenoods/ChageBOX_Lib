@@ -14,6 +14,13 @@ public class RemindService {
 		}
 		dao.insert(r);	
 	}
+	
+	public void register2(remind r) throws VGBException{
+		if(r==null) {
+			throw new IllegalArgumentException("客戶c不得為null");
+		}
+		dao.insert2(r);	
+	}
 	/*追加的update*/
 	public void update(remind r) throws VGBException{
 		if(r==null) {
@@ -25,5 +32,8 @@ public class RemindService {
 	
 	public List<remind> getRemind(String ownerID)throws VGBException{
 		return dao.searctRemindByOwner(ownerID);
+		}
+	public List<remind> getRemindQ(String ownerID)throws VGBException{
+		return dao.searctRemindByOwnerQ(ownerID);
 		}
 }

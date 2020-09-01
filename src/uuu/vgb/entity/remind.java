@@ -12,6 +12,27 @@ public class remind {
 	
 	public Customer owner ;//擁有者
 
+	public Customer Q_owner;//QA
+	
+	public Customer C_owner;//change
+	
+	
+	public Customer getQ_owner() {
+		return Q_owner;
+	}
+
+	public void setQ_owner(Customer q_owner) {
+		Q_owner = q_owner;
+	}
+
+	public Customer getC_owner() {
+		return C_owner;
+	}
+
+	public void setC_owner(Customer c_owner) {
+		C_owner = c_owner;
+	}
+
 	public Customer getOwner() {
 		return owner;
 	}
@@ -55,8 +76,10 @@ public class remind {
 	@Override
 	public String toString() {
 		return "remind [remindId=" + remindId + ", unLook=" + unLook + ", user=" + user + ", lookTime=" + lookTime
-				+ ", owner=" + owner + "]";
+				+ ", owner=" + owner + ", Q_owner=" + Q_owner + ", C_owner=" + C_owner + "]";
 	}
+
+	
 
 	
 }

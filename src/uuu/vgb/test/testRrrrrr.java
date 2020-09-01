@@ -19,12 +19,15 @@ public class testRrrrrr {
 		RemindService service =new RemindService();
 		try {
 			remind r = new remind();
-				
-				r.setRemindId(9);
-				r.setUnLook(true);
+			Customer c = new Customer();
 			
-				
-				service.update(r);
+			c.setId("A123456789");
+			
+			
+			r.setQ_owner(c);
+			//r.setQ_owner(c2);
+			//r.setC_owner(c3);	
+			service.register2(r);
 				
 		}catch(VGBException e) {
 					 e.printStackTrace();	

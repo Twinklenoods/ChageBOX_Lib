@@ -12,7 +12,7 @@ public class TestRemindSelect {
 	RemindService service =new RemindService();
 	
 	try {
-		System.out.println(service.getRemind("A123456761"));
+		System.out.println(service.getRemindQ("A123456789"));
 		
 		System.out.println("bye");
 	}catch (VGBException e) {
