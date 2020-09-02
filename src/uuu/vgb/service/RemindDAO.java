@@ -212,4 +212,91 @@ public class RemindDAO {
 		
 		return list;
 	}
+	
+	private static final String INSERT_CREMIND=" INSERT INTO `reminds` (`remindId`, `lookTime`, `user`, `unlook`, `C_owner`) \n" 
+			+ "    VALUES(?,?,?,?,?)";
+
+	public void insert3(remind r) throws VGBException{
+		
+		try (
+			Connection connection =RDBConnection.getConnection();//1.2.取得連線
+			PreparedStatement pstmt =connection.prepareStatement(INSERT_CREMIND);//3.準備指令
+		){
+			//3.1傳入?值
+			pstmt.setInt(1,r.getRemindId());//3.1 自動
+			pstmt.setString(2,r.getLookTime());
+			pstmt.setString(3,r.getUser());
+			pstmt.setBoolean(4,r.isUnLook());
+			pstmt.setString(5,r.getC_owner().getId());
+			
+			
+			
+			 pstmt.executeUpdate();//4.執行指令
+			
+		} catch (SQLIntegrityConstraintViolationException e) {
+			String key="";
+			if(e.getMessage().indexOf("PRIMSRY")>=0) {
+				key="id";
+			}
+			throw new VGBException("提醒已重複-"+key+"提醒複註冊",e);
+		} catch (SQLException e) {
+				throw new VGBException("提醒新增失敗",e);
+		} 
+	}
+
+
+	
+	
+	private static final String SELECT_REMINDC = "SELECT"
+			+ " remindId, lookTime, user, unlook, owner, Q_owner, C_owner, c1.name" 
+			+ "	 FROM reminds LEFT JOIN customers AS c1 ON c1.id = reminds.user "
+				
+			+" WHERE  C_owner LIKE ? AND lookTime IS NULL order by remindId desc";
+	public  List<remind> searctRemindByOwnerC(String ownerID) throws VGBException{
+		List<remind> list =new ArrayList<>();
+		try(
+		Connection connection =RDBConnection.getConnection();//1.2
+		PreparedStatement pstmt =connection.prepareStatement(SELECT_REMINDC);//3
+		){
+			//3.1傳入
+			pstmt.setString(1, '%'+ownerID+'%');
+			//4.執行指令
+			try(
+			ResultSet rs =pstmt.executeQuery();
+			){
+				while(rs.next()) {
+					remind r = new remind();
+					Customer c1 =new Customer(); 
+				
+					r.setC_owner(c1);
+				
+					c1.setName(rs.getString("c1.name"));
+					c1.setId(rs.getString("C_owner"));
+				
+					
+					r.setRemindId(rs.getInt("remindId"));
+					r.setLookTime(rs.getString("lookTime"));
+					r.setUser(rs.getString("user"));
+					r.setUnLook(rs.getBoolean("unlook"));
+				
+					list.add(r);
+					
+					
+					
+					
+					
+				}
+				
+				
+				
+			}
+			
+		}catch(SQLException e) {
+			throw new VGBException("[用關鍵字查詢失敗]",e);
+			
+			
+		}
+		
+		return list;
+	}
  }

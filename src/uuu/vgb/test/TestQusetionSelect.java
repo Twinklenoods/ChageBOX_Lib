@@ -4,14 +4,15 @@ import uuu.vgb.entity.VGBException;
 import uuu.vgb.service.ProductSelectService;
 import uuu.vgb.service.ProductService;
 import uuu.vgb.service.QuestionService;
+import uuu.vgb.service.WantChangeService;
 
 public class TestQusetionSelect {
 
 	public static void main(String[] args) {
-	QuestionService service =new QuestionService();
+		WantChangeService service =new WantChangeService();
 	
 	try {
-		System.out.println(service.getQuertionsByProductID("1"));
+		System.out.println(service.getWantChangeByUserID("A123456789"));
 		System.out.println("bye");
 	}catch (VGBException e) {
 		e.printStackTrace();

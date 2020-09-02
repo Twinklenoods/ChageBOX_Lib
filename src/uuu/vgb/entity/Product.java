@@ -19,8 +19,17 @@ public class Product {
 	private String ownerN;// 訂單建立者name
 	private String createTime;//建立時間
 	private String updown;//建立時間
+	private int listrating;//評價
+	
 
 	
+	public int getListrating() {
+		return listrating;
+	}
+
+	public void setListrating(int listrating) {
+		this.listrating = listrating;
+	}
 
 	public String getUpdown() {
 		return updown;
