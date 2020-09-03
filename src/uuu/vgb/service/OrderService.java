@@ -1,10 +1,13 @@
 package uuu.vgb.service;
 
+import java.util.List;
+
 import uuu.vgb.entity.Customer;
 import uuu.vgb.entity.Order;
 import uuu.vgb.entity.Outlet;
 import uuu.vgb.entity.Product;
 import uuu.vgb.entity.VGBException;
+import uuu.vgb.entity.WantChange;
 
 public class OrderService {
 	
@@ -20,7 +23,9 @@ public class OrderService {
 		}
 		dao.insert(o);	
 	}
-	
+	public List<Order> getOrderBuyByUserID(String UserID)throws VGBException{
+		return dao.selectOrderByUserID(UserID);
+		}
 	
 	
 }

@@ -7,13 +7,37 @@ public class Order {
 	public int uniprice;
 	public String pay;//付款方式
 	public String use;//貨運方式
-	public String pay_fee;//付款方式
+	public int pay_fee;//付款方式
 	public String use_fee;//貨運方式
 	public String name;
 	public String phone;
 	public String email;
 	public String address;
 	public String createTime;
+	public String userID;
+	public String ownerID;
+	public String proName;
+	
+	
+	
+	public String getProName() {
+		return proName;
+	}
+	public void setProName(String proName) {
+		this.proName = proName;
+	}
+	public String getUserID() {
+		return userID;
+	}
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
+	public String getOwnerID() {
+		return ownerID;
+	}
+	public void setOwnerID(String ownerID) {
+		this.ownerID = ownerID;
+	}
 	public int getId() {
 		return id;
 	}
@@ -44,10 +68,10 @@ public class Order {
 	public void setUse(String use) {
 		this.use = use;
 	}
-	public String getPay_fee() {
+	public int getPay_fee() {
 		return pay_fee;
 	}
-	public void setPay_fee(String pay_fee) {
+	public void setPay_fee(int pay_fee) {
 		this.pay_fee = pay_fee;
 	}
 	public String getUse_fee() {
