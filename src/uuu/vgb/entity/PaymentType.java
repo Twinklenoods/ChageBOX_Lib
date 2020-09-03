@@ -3,7 +3,7 @@ package uuu.vgb.entity;
 public enum PaymentType {
 	Face("面交",ShippingType.toFace),
 	ATM("ATM轉帳",ShippingType.toCat,ShippingType.toNew,ShippingType.toStore),
-	Home(60,"到貨付款",ShippingType.toStore),
+	Home(60,"到貨付款-60",ShippingType.toStore),
 	Store("超商付款",ShippingType.toStore),
 	Card("信用卡付款",ShippingType.toCat,ShippingType.toNew,ShippingType.toStore);
 	

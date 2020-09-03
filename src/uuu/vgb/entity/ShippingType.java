@@ -1,8 +1,8 @@
 package uuu.vgb.entity;
 
 public enum ShippingType {
-	toCat(100,"黑貓"),
-	toNew(100,"新竹貨運"),
+	toCat(100,"黑貓-100"),
+	toNew(100,"新竹貨運-100"),
 	toFace("面交"),
 	toStore("超商到店");
 	

@@ -1,33 +1,27 @@
 package uuu.vgb.test;
 import uuu.vgb.entity.Customer;
+import uuu.vgb.entity.Order;
 import uuu.vgb.entity.Product;
 import uuu.vgb.entity.Question;
 import uuu.vgb.entity.VGBException;
 
 import uuu.vgb.service.QuestionService;
-
+import uuu.vgb.service.OrderService;
 public class testQuertionsInter {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		QuestionService service =new QuestionService();
+		OrderService service =new OrderService();
 		try {
-			Question q=new Question();
-			Product p = new Product();	
-			Customer Q= new Customer();
 			
-				
-			p.setId(1);
-			q.setProductId(p);
-				
-			Q.setId("A123456789");
-			q.setUser(Q);
-			
-			
-			q.setQuestion("急需");
+			Order o =new Order(); 
 		
+			o.setProductID(1);
+			o.setAddress("1231");
+			o.setEmail("2313213");
 			
-				service.register(q);
+				
+			service.register(o);
 				
 				}catch(VGBException e) {
 					 e.printStackTrace();	
