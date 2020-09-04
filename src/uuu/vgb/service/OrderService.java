@@ -26,6 +26,14 @@ public class OrderService {
 	public List<Order> getOrderBuyByUserID(String UserID)throws VGBException{
 		return dao.selectOrderByUserID(UserID);
 		}
+	public List<Order> getOrderBuyByOwnerID(String ownerID)throws VGBException{
+		return dao.selectOrderByOwnerID(ownerID);
+		}
+	public void update(Order o) throws VGBException{
+		if(o==null) {
+			throw new IllegalArgumentException("訂單p不得為null");
+		}
+		dao.update(o);	
 	
-	
+}
 }

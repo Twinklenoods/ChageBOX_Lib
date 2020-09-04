@@ -752,4 +752,55 @@ class ProductsSelectDAO {
 		
 		return list;
 	}
+
+	private static final String SELECT_LISTRATING = "SELECT" //使用者的下架商品
+			+ " owner,id, listrating " 
+			+ "	FROM products "
+			+ " WHERE owner = ? AND listrating IS NOT NULL";
+	public  List<Product> searctLisyrating(String Lisyrating) throws VGBException{
+		List<Product> list =new ArrayList<>();
+		try(
+		Connection connection =RDBConnection.getConnection();//1.2
+		PreparedStatement pstmt =connection.prepareStatement(SELECT_LISTRATING);//3
+		){
+			//3.1傳入
+			pstmt.setString(1,Lisyrating);
+			//4.執行指令
+			try(
+			ResultSet rs =pstmt.executeQuery();
+			){
+				while(rs.next()) {
+					Customer c = new Customer();
+					Product p = new Product();
+					
+					c.setId(rs.getString("owner"));
+					
+					p.setOwner(c);
+					
+					p.setListrating(rs.getInt("listrating"));
+					
+					
+					list.add(p);
+					
+					
+					
+					
+					
+				}
+				
+				
+				
+			}
+			
+		}catch(SQLException e) {
+			throw new VGBException("[用關鍵字查詢失敗]",e);
+			
+			
+		}
+		
+		return list;
+	}
+
+
+
 }

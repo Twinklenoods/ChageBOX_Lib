@@ -5,8 +5,8 @@ public class Order {
 	public int id;//流水號
 	public int productID;
 	public int uniprice;
-	public String pay;//付款方式
-	public String use;//貨運方式
+	public int pay;//付款方式
+	public int use;//貨運方式
 	public int pay_fee;//付款方式
 	public String use_fee;//貨運方式
 	public String name;
@@ -56,16 +56,16 @@ public class Order {
 	public void setUniprice(int uniprice) {
 		this.uniprice = uniprice;
 	}
-	public String getPay() {
+	public int getPay() {
 		return pay;
 	}
-	public void setPay(String pay) {
+	public void setPay(int pay) {
 		this.pay = pay;
 	}
-	public String getUse() {
+	public int getUse() {
 		return use;
 	}
-	public void setUse(String use) {
+	public void setUse(int use) {
 		this.use = use;
 	}
 	public int getPay_fee() {

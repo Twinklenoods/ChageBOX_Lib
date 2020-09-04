@@ -185,11 +185,13 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "Product [訂單編號=" + id + ", 遊戲名稱=" + name + ", 擁有者=" + owner +",擁有者=" + ownerN+ ", 買家=" + customer + ", 直購價格="
-				+ unitPrice + ", 商品描述=" + description + ", wantChange=" + wantChange + ", 照片=" + photoUrl
-				+ ", origin=" + origin + ", host=" + host + ", buy=" + buy + ", change=" + changebox 
-				+ "]";
+		return "Product [id=" + id + ", name=" + name + ", owner=" + owner + ", customer=" + customer + ", unitPrice="
+				+ unitPrice + ", description=" + description + ", wantChange=" + wantChange + ", photoUrl=" + photoUrl
+				+ ", origin=" + origin + ", host=" + host + ", buy=" + buy + ", changebox=" + changebox + ", ownerN="
+				+ ownerN + ", createTime=" + createTime + ", updown=" + updown + ", listrating=" + listrating + "]";
 	}
+
+
 
 	
 

@@ -9,10 +9,10 @@ import uuu.vgb.service.WantChangeService;
 public class TestQusetionSelect {
 
 	public static void main(String[] args) {
-		WantChangeService service =new WantChangeService();
+		ProductSelectService service =new ProductSelectService();
 	
 	try {
-		System.out.println(service.getWantChangeByUserID("A123456789"));
+		System.out.println(service.getlistrating("A123456789"));
 		System.out.println("bye");
 	}catch (VGBException e) {
 		e.printStackTrace();
