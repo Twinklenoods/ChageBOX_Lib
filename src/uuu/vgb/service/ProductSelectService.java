@@ -49,7 +49,7 @@ public class ProductSelectService {
 	public List<Product> getupBUY(String owner)throws VGBException{
 		return dao.searctProductsByOwnerBUYup(owner);
 		}
-	public List<Product> getlistrating(String Lisyrating)throws VGBException{
-		return dao.searctLisyrating(Lisyrating);
+	public List<Product> getlistrating(String ownerID,int listrating)throws VGBException{
+		return dao.searctLisyrating(ownerID, listrating);
 		}
 }

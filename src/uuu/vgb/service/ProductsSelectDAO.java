@@ -754,17 +754,18 @@ class ProductsSelectDAO {
 	}
 
 	private static final String SELECT_LISTRATING = "SELECT" //使用者的下架商品
-			+ " owner,id, listrating " 
+			+ " owner,id, listrating ,customer" 
 			+ "	FROM products "
-			+ " WHERE owner = ? AND listrating IS NOT NULL";
-	public  List<Product> searctLisyrating(String Lisyrating) throws VGBException{
+			+ " WHERE owner = ? AND listrating =? ";
+	public  List<Product> searctLisyrating(String ownerID,Integer listrating) throws VGBException{
 		List<Product> list =new ArrayList<>();
 		try(
 		Connection connection =RDBConnection.getConnection();//1.2
 		PreparedStatement pstmt =connection.prepareStatement(SELECT_LISTRATING);//3
 		){
 			//3.1傳入
-			pstmt.setString(1,Lisyrating);
+			pstmt.setString(1,ownerID);
+			pstmt.setInt(2,listrating);
 			//4.執行指令
 			try(
 			ResultSet rs =pstmt.executeQuery();
@@ -776,7 +777,7 @@ class ProductsSelectDAO {
 					c.setId(rs.getString("owner"));
 					
 					p.setOwner(c);
-					
+					p.setCustomer(rs.getString("customer"));
 					p.setListrating(rs.getInt("listrating"));
 					
 					

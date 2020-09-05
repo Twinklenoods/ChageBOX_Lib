@@ -12,7 +12,7 @@ public class TestQusetionSelect {
 		ProductSelectService service =new ProductSelectService();
 	
 	try {
-		System.out.println(service.getlistrating("A123456789"));
+		System.out.println(service.getlistrating("A123456789",1));
 		System.out.println("bye");
 	}catch (VGBException e) {
 		e.printStackTrace();
