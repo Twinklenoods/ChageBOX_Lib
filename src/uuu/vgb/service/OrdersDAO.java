@@ -19,8 +19,8 @@ import uuu.vgb.entity.WantChange;
 public class OrdersDAO {
 	private static final String INSERT_ORDER= " INSERT INTO `Orders` "
 			+ "(`id`, `productID`, `uniprice`, `pay`, `usec`, "
-			+ "`name`, `phone`,`email`, `address`, `use_fee`, `userID`, `ownerID` ) \n" 
-			+ "    VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+			+ "`name`, `phone`,`email`, `address`, `use_fee`, `userID`, `ownerID`, `proName` ) \n" 
+			+ "    VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			
 	public void insert(Order o) throws VGBException{
 		
@@ -44,7 +44,7 @@ public class OrdersDAO {
 			pstmt.setString(10,o.getUse_fee());
 			pstmt.setString(11,o.getUserID());
 			pstmt.setString(12,o.getOwnerID());
-		
+			pstmt.setString(13,o.getProName());
 			
 			
 			
