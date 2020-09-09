@@ -36,4 +36,11 @@ public class OrderService {
 		dao.update(o);	
 	
 }
+	public void updateUse(Order o) throws VGBException{
+		if(o==null) {
+			throw new IllegalArgumentException("訂單p不得為null");
+		}
+		dao.updateUse_fee(o);	
+	
+}
 }
