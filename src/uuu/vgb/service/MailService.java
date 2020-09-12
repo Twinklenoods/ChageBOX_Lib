@@ -103,7 +103,7 @@ public class MailService {
             multipart.addBodyPart(messageBodyPart);
 
             // second part (the image)
-            String filename = "ftl/shoppingbag.png";
+            String filename = "ftl/721191.png";
             messageBodyPart = new MimeBodyPart();
 
             //取得網站上的圖檔
