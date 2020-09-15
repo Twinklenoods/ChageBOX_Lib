@@ -318,7 +318,7 @@ class ProductsSelectDAO {
 	private static final String SELECT_PRODUYS_BY_UPOWNER = "SELECT" //找賣家
 			+ " products.id,products.name,description,origin,customers.name,changebox,customers.id,host,unitprice,createTime,buy,wantChange,photoUrl,customer,updown" 
 			+ "	FROM products LEFT JOIN customers ON customers.id=Products.owner"
-					+ " WHERE customers.id LIKE ? AND updown='yes' order by customers.name desc";
+					+ " WHERE customers.id LIKE ? AND updown='yes' AND customer IS NULL order by customers.name desc ";
 	public  List<Product> selectProductsUpOwner(String search) throws VGBException{
 		List<Product> list =new ArrayList<>();
 		LOG.info("selectProductsUpOwner");
@@ -508,7 +508,7 @@ class ProductsSelectDAO {
 	private static final String SELECT_PRODUYS_BY_OWNERBOXdown = "SELECT" //使用者的下架商品
 			+ " products.id,products.name,description,origin,customers.name,changebox,customers.id,host,unitprice,createTime,buy,wantChange,photoUrl,customer,updown" 
 			+ "	FROM products LEFT JOIN customers ON customers.id=products.owner"
-					+ " WHERE customers.id LIKE ? AND updown='no' AND changebox='yes' ";
+					+ " WHERE customers.id LIKE ? AND updown='no' AND changebox='yes' AND customer IS NULL ";
 	public  List<Product> searctProductsByOwnerBOXdown(String ownerId) throws VGBException{
 		List<Product> list =new ArrayList<>();
 		try(
@@ -570,7 +570,7 @@ class ProductsSelectDAO {
 	private static final String SELECT_PRODUYS_BY_OWNERBOXup = "SELECT" //使用者的下架商品
 			+ " products.id,products.name,description,origin,customers.name,changebox,customers.id,host,unitprice,createTime,buy,wantChange,photoUrl,customer,updown" 
 			+ "	FROM products LEFT JOIN customers ON customers.id=products.owner"
-					+ " WHERE customers.id LIKE ? AND updown='yes' AND changebox='yes' ";
+					+ " WHERE customers.id LIKE ? AND updown='yes' AND changebox='yes' AND customer IS NULL ";
 	public  List<Product> searctProductsByOwnerBOXup(String ownerId) throws VGBException{
 		List<Product> list =new ArrayList<>();
 		try(
@@ -632,7 +632,7 @@ class ProductsSelectDAO {
 	private static final String SELECT_PRODUYS_BY_OWNERBUYup = "SELECT" //使用者的下架商品
 			+ " products.id,products.name,description,origin,customers.name,changebox,customers.id,host,unitprice,createTime,buy,wantChange,photoUrl,customer,updown" 
 			+ "	FROM products LEFT JOIN customers ON customers.id=products.owner"
-					+ " WHERE customers.id LIKE ? AND updown='yes' AND buy='yes' ";
+					+ " WHERE customers.id LIKE ? AND updown='yes' AND buy='yes' AND customer IS NULL ";
 	public  List<Product> searctProductsByOwnerBUYup(String ownerId) throws VGBException{
 		List<Product> list =new ArrayList<>();
 		try(
@@ -694,7 +694,7 @@ class ProductsSelectDAO {
 	private static final String SELECT_PRODUYS_BY_OWNERBUYdown = "SELECT" //使用者的下架商品
 			+ " products.id,products.name,description,origin,customers.name,changebox,customers.id,host,unitprice,createTime,buy,wantChange,photoUrl,customer,updown" 
 			+ "	FROM products LEFT JOIN customers ON customers.id=products.owner"
-					+ " WHERE customers.id LIKE ? AND updown='no' AND buy='yes' ";
+					+ " WHERE customers.id LIKE ? AND updown='no' AND buy='yes' AND customer IS NULL";
 	public  List<Product> searctProductsByOwnerBUYdown(String ownerId) throws VGBException{
 		List<Product> list =new ArrayList<>();
 		try(
